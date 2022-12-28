@@ -1,5 +1,5 @@
-
 let NFTcontract;
+let $connectWallet = $('#connectWallet');
 let MetaMaskEnabled = false;
 
 async function walletConnector(){
@@ -19,6 +19,9 @@ function displayWallet(acc){
    NFTcontract = new web3js.eth.Contract(NFTABI, NFTAddress);
 }
 
+
+
+
 window.addEventListener('load', function() {
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
@@ -34,6 +37,14 @@ window.addEventListener('load', function() {
       MetaMaskEnabled = false;
     }
   })
-
 let activeAccount;
-
+$connectWallet.on('click', () => {
+  if (MetaMaskEnabled === true){
+    walletConnector().then((accounts) => {
+      if(accounts && accounts[0] > 0){
+        displayWallet(accounts)
+        activeAccount = accounts[0];
+      }
+    })
+  }
+})

@@ -12,20 +12,25 @@ import ContentPaste from '@mui/icons-material/ContentPaste';
 import Cloud from '@mui/icons-material/Cloud';
 
 
-function NavMenu() {
+function NavMenu(props) {
+
+  function handleClick(event){
+    props.changePage(event.target.innerHTML);
+  }
+
   return (
-    <Paper sx={{ width: 1}}>
+    <Paper sx={{ width: 1}} square={true}>
       <MenuList>
-        <MenuItem>
-            <ListItemText style={{ textAlign: "center" }}>Home</ListItemText>
+        <MenuItem style ={{padding:0}}>
+            <ListItemText style={{ textAlign: "center" }} onClick={handleClick}>Home</ListItemText>
         </MenuItem>
         <Divider />
-        <MenuItem>
-            <ListItemText style={{ textAlign: "center" }}>Mint</ListItemText>
+        <MenuItem style ={{padding:0}}>
+            <ListItemText style={{ textAlign: "center" }} onClick={handleClick}>Mint</ListItemText>
         </MenuItem>
         <Divider />
-        <MenuItem>
-            <ListItemText style={{ textAlign: "center" }}>Claim Dividend</ListItemText>
+        <MenuItem style ={{padding:0}}>
+            <ListItemText style={{ textAlign: "center" }} onClick={handleClick}>Check Ticket</ListItemText>
         </MenuItem>
     
       </MenuList>

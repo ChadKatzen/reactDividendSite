@@ -1,84 +1,156 @@
-import React, {useState} from 'react';
-import {Typography, AppBar, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container} from '@mui/material';
-import { PhotoCamera } from '@mui/icons-material';
+//Big Libraries
+import React, {useState, useEffect} from 'react';
+import Web3 from 'web3';
+import { useWeb3React } from '@web3-react/core'
+import jQuery from "jquery";
+
+
+//Wallet Specific
+import { WalletLinkConnector } from "@web3-react/walletlink-connector";
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { InjectedConnector } from "@web3-react/injected-connector";
+
+//Contract Specific
+import ABI from './globalHelperScripts/NFTABI.js';
+
+//Components
 import ButtonAppBar from './AppBar';
 import NavMenu from './NavMenu';
+import Mint from './Mint';
+import Home from'./Home';
+import TicketCheck from './TicketCheck.js';
 
-//NEED TO IMPORT WEB 3 here
-//NEED TO IMPORT NFTABI As a variable
+
+//CSS
+import './css/App.css';
+import { display } from '@mui/system';
+import { Visibility } from '@mui/icons-material';
+
+//SETUP JQUERRY
+let $ = window.$ = window.jQuery = jQuery;
+
+
+//SETUP Wallets
+    const CoinbaseWallet = new WalletLinkConnector({
+    url: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
+    appName: "Web3-react Demo",
+    supportedChainIds: [1, 3, 4, 5, 42],
+   });
+   
+   const WalletConnect = new WalletConnectConnector({
+    rpcUrl: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
+    bridge: "https://bridge.walletconnect.org",
+    qrcode: true,
+   });
+   
+   const Injected = new InjectedConnector({
+    supportedChainIds: [1, 3, 4, 5, 42]
+   });
+
+
 
 const App = () => {
     
     //Contract State Globals
     const [NFTAddress, setNFTAddress] = useState("0x7DAfAC25D7FF95f878B9bb08E9bA3fAEd5f72418");
-    const [MetaMaskEnabled, setMetaMaskEnabled] = useState(false);
-    const [NFTContract, setNFTContract] = useState(null);
+    const [WalletConnected, setWalletConnected] = useState(false);
 
-    React.useEffect(() => {
-        window.addEventListener('load', function() {
+    const { activate, deactivate,active, chainId, account, provider } = useWeb3React();
 
-            // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-            if (typeof web3 !== 'undefined') {
-                // Use Mist/MetaMask's provider
-                web3js = new Web3(web3.currentProvider);
-                setMetaMaskEnabled(true);
-                setNFTContract(new web3js.eth.Contract(NFTABI, NFTAddress));
-            } else {
-              // Handle the case where the user doesn't have Metamask installed
-              // Probably show them a message prompting them to install Metamask
-            }
-            })
-    });
+    async function handleConnectToMetaMask(){
+        await activate(Injected);
+        setWalletConnected(true);
+    }
+    async function handleConnectToCoinBase(){
+        await activate(CoinbaseWallet);
+    }
+    async function handleConnectToWalletConnector(){
+        await activate(WalletConnect);
+    }
     
 
-
-    const [activeAccount, setActiveAccount] = useState(0);
-
-    function connectWallet() {
-        if(MetaMaskEnabled){
-            ethereum.request({ method: 'eth_requestAccounts'}).then((accounts) => {
-                if(accounts && accounts[0] > 0){
-                  setActiveAccount(accounts[0]);
-                }
-              })
-        }
-    }
     //NAV MENU FUNCTIONS
-        const [navMenuActive, setNavMenuActive] = useState(false);
+        function handleNavMenuDisplay(){
+            $('#navMenu').slideToggle();
+        }
 
+
+    //MINT Functions
+        async function handleMint(){
+            if(WalletConnected === false){
+                window.alert("Connect your wallet first")
+                return;
+            }
+            let provider = await Injected.getProvider();
+            let myWeb3js = new Web3(provider);
+            let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
+            let accounts = await provider.request({ method: 'eth_requestAccounts'});
+            await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei("0.08", "ether") })
+        }
+
+    
+    //Display the Body
+    const [displayPage, setDisplayPage] = useState("Home")
+
+    function handlePageChange(pageName){
+        setDisplayPage(pageName);
+        $('#navMenu').slideToggle();
+    }
+
+    function renderBody(){
+        if (displayPage === "Home"){
+            return <Home />;
+        }
+        if (displayPage === "Mint"){
+            return <Mint handleClick = {handleMint}/>;
+        }
+        if (displayPage === "Check Ticket"){
+            return <TicketCheck />;
+        }
+        return <div></div>;
+    }
+    
+        //right now the button only connects to metamask... need to create a modal to pop up when clicking that can handle all three
+    return (
+        <div>
+            
+            <ButtonAppBar activateNavMenu = {handleNavMenuDisplay} connectToMetaMask = {handleConnectToMetaMask} activeAccount = {account? `${account.substring(0,5)}...${account.substring(account.length -5)}` : "Connect Wallet"}/>
+            <div id='navMenu' style={{display:"none"}}>
+                <NavMenu changePage = {handlePageChange}/>                
+            </div>
+            <div>
+                {renderBody()}
+            </div>
+            
+        </div>
+    );
+}
+/*
+  <div style={navMenuStyle()}>
+                <NavMenu />
+            </div>
+
+            <div className={`navMenu ${navMenuActive? 'active' : 'inactive'}`}>
+                <NavMenu />
+            </div>
+            const [navMenuActive, setNavMenuActive] = useState(false);
         //Transition Times not working yet
         const navMenuStyleActive = {
             visibility : 'visible',
-            transition: 'height 0.3s ease'
+            maxHeight: '10000',
+            transition: 'maxHeight 3s ease'
         };
         const navMenuStyleHidden = {
             visibility : 'hidden',
-            transition: 'height 0.3s ease'
+            maxHeight: '0',
+            transition: 'maxHeight 3s ease'
         };
-
         function navMenuStyle(){
             if(navMenuActive){
                 return navMenuStyleActive;
             }
             return navMenuStyleHidden;
         }
-
-        function handleNavMenuDisplay(){
-            setNavMenuActive(navMenuActive? false: true);
-        }
-
-
-    
-
-    return (
-        <div>
-            <ButtonAppBar activateNavMenu = {handleNavMenuDisplay}/>
-            <div style={navMenuStyle()}>
-                <NavMenu />
-            </div>
-
-        </div>
-    );
-}
+*/
 
 export default App;

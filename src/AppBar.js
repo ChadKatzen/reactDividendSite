@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 
 const ButtonAppBar = (props) => {
-
+  
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -28,10 +28,9 @@ const ButtonAppBar = (props) => {
               <MenuIcon />
             </IconButton>
             <Typography component="div" sx={{ flexGrow: 1 }}>
-              Dividend
+              Lottery Home
             </Typography>
-            <Button color="inherit">Connect Wallet</Button>
-            
+            <Button color="inherit" onClick={props.connectToMetaMask}>{props.activeAccount}</Button>
           </Toolbar>
         </AppBar>
       </Box>

@@ -1,4 +1,4 @@
-let NFTABI = [
+let ABI = [
     {
       "inputs": [],
       "stateMutability": "nonpayable",
@@ -580,3 +580,5 @@ let NFTABI = [
       "type": "receive"
     }
   ]
+
+  export default ABI;
