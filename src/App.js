@@ -74,7 +74,6 @@ const App = () => {
             $('#navMenu').slideToggle();
         }
 
-
     //MINT Functions
         async function handleMint(){
             if(WalletConnected === false){
@@ -91,12 +90,10 @@ const App = () => {
     
     //Display the Body
     const [displayPage, setDisplayPage] = useState("Home")
-
     function handlePageChange(pageName){
         setDisplayPage(pageName);
         $('#navMenu').slideToggle();
     }
-
     function renderBody(){
         if (displayPage === "Home"){
             return <Home />;
@@ -125,32 +122,5 @@ const App = () => {
         </div>
     );
 }
-/*
-  <div style={navMenuStyle()}>
-                <NavMenu />
-            </div>
-
-            <div className={`navMenu ${navMenuActive? 'active' : 'inactive'}`}>
-                <NavMenu />
-            </div>
-            const [navMenuActive, setNavMenuActive] = useState(false);
-        //Transition Times not working yet
-        const navMenuStyleActive = {
-            visibility : 'visible',
-            maxHeight: '10000',
-            transition: 'maxHeight 3s ease'
-        };
-        const navMenuStyleHidden = {
-            visibility : 'hidden',
-            maxHeight: '0',
-            transition: 'maxHeight 3s ease'
-        };
-        function navMenuStyle(){
-            if(navMenuActive){
-                return navMenuStyleActive;
-            }
-            return navMenuStyleHidden;
-        }
-*/
 
 export default App;
