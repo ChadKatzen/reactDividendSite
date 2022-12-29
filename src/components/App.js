@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Web3 from 'web3';
 import { useWeb3React } from '@web3-react/core'
 import jQuery from "jquery";
+import { ethers } from 'ethers';
 
 
 //Wallet Specific
@@ -11,7 +12,7 @@ import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { InjectedConnector } from "@web3-react/injected-connector";
 
 //Contract Specific
-import ABI from './globalHelperScripts/NFTABI.js';
+import ABI from '../globalHelperScripts/NFTABI.js';
 
 //Components
 import ButtonAppBar from './AppBar';
@@ -22,7 +23,7 @@ import TicketCheck from './TicketCheck.js';
 
 
 //CSS
-import './css/App.css';
+import '../css/App.css';
 import { display } from '@mui/system';
 import { Visibility } from '@mui/icons-material';
 
@@ -63,9 +64,11 @@ const App = () => {
     }
     async function handleConnectToCoinBase(){
         await activate(CoinbaseWallet);
+        setWalletConnected(true);
     }
     async function handleConnectToWalletConnector(){
-        await activate(WalletConnect);
+        setTimeout(() => activate(WalletConnect), 500);
+        setWalletConnected(true);
     }
     
 
@@ -111,7 +114,13 @@ const App = () => {
     return (
         <div>
             
-            <ButtonAppBar activateNavMenu = {handleNavMenuDisplay} connectToMetaMask = {handleConnectToMetaMask} activeAccount = {account? `${account.substring(0,5)}...${account.substring(account.length -5)}` : "Connect Wallet"}/>
+            <ButtonAppBar 
+                activateNavMenu = {handleNavMenuDisplay} 
+                connectToMetaMask = {handleConnectToMetaMask} 
+                connectToCoinBase ={handleConnectToCoinBase}
+                connectToWalletConnector = {handleConnectToWalletConnector}
+                activeAccount = {account? `${account.substring(0,5)}...${account.substring(account.length -5)}` : "Connect Wallet"}
+            />
             <div id='navMenu' style={{display:"none"}}>
                 <NavMenu changePage = {handlePageChange}/>                
             </div>
