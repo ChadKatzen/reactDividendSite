@@ -19,7 +19,8 @@ function NavMenu(props) {
   }
 
   return (
-    <Paper sx={{ width: 1}} square={true}>
+    <Paper 
+      sx={{ width: 1}} square={true}>
       <MenuList>
         <MenuItem style ={{padding:0}}>
             <ListItemText style={{ textAlign: "center" }} onClick={handleClick}>Home</ListItemText>

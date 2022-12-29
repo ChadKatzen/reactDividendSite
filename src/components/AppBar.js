@@ -11,19 +11,6 @@ import WalletModal from './WalletModal';
 
 
 
-const styleModal = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '1px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
-
 const ButtonAppBar = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -43,6 +30,7 @@ const ButtonAppBar = (props) => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
+
             <IconButton
               size="large"
               edge="start"
@@ -53,13 +41,17 @@ const ButtonAppBar = (props) => {
             >
               <MenuIcon />
             </IconButton>
+
             <Typography component="div" sx={{ flexGrow: 1 }}>
               Tessera
             </Typography>
+
             <Button color={connected()? "lightGreen": "inherit"} variant={connected()?"contained":"outlined"} onClick={handleConnectWallet}>{props.activeAccount}</Button>
+          
           </Toolbar>
         </AppBar>
       </Box>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -77,54 +69,6 @@ const ButtonAppBar = (props) => {
       
   );
 }
-/*
-<Paper sx={styleModal}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Select Wallet
-          </Typography>
-          <Button color="inherit" variant="outlined" onClick={handleConnectWallet}>
-            <Box sx={{ display: 'flex',flexDirection: 'row'}}>
-              <img src={MetaMaskIcon} style={{width: '30px', padding: '5px'}}/>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                metamask
-              </Typography>
-            </Box>
-            
-          </Button>
 
-
-        </Paper>
-
-
-
-
-
-              <List sx={styleModal}>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <img src = {MetaMaskIcon}/>
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Photos"  />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Work"  />
-        </ListItem>
-        <ListItem style={{border:"2px"}}>
-          <ListItemAvatar>
-            <Avatar>
-              <BeachAccessIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Vacation"  />
-        </ListItem>
-      </List>
-*/
 export default ButtonAppBar;
 

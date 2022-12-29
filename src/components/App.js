@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import Web3 from 'web3';
 import { useWeb3React } from '@web3-react/core'
 import jQuery from "jquery";
-import { ethers } from 'ethers';
 
 
 //Wallet Specific
@@ -24,8 +23,7 @@ import TicketCheck from './TicketCheck.js';
 
 //CSS
 import '../css/App.css';
-import { display } from '@mui/system';
-import { Visibility } from '@mui/icons-material';
+
 
 //SETUP JQUERRY
 let $ = window.$ = window.jQuery = jQuery;
@@ -52,29 +50,54 @@ let $ = window.$ = window.jQuery = jQuery;
 
 const App = () => {
     
-    //Contract State Globals
-    const [NFTAddress, setNFTAddress] = useState("0x7DAfAC25D7FF95f878B9bb08E9bA3fAEd5f72418");
-    const [WalletConnected, setWalletConnected] = useState(false);
+    //Contract State & Wallet Globals 
+        const [NFTAddress, setNFTAddress] = useState("0x7DAfAC25D7FF95f878B9bb08E9bA3fAEd5f72418");
+        const [WalletConnected, setWalletConnected] = useState(false);
+        const [accountDisplay, setAccountDisplay] = useState("");
+        const [activeProvider, setActiveProvider] = useState({});
+        let { activate, deactivate, account } = useWeb3React();
 
-    const { activate, deactivate,active, chainId, account, provider } = useWeb3React();
+        async function handleConnectToMetaMask(){
+            let provider;
+            //Filter through all injected providers to get Metamask
+            let providers = await Injected.getProvider();
+            if (providers.providers.length) {
+                providers.providers.forEach(async (p) => {
+                    console.log(p)
+                if (p.isMetaMask) provider = p;
+                });
+            }
+            account = await provider.request({ method: 'eth_requestAccounts'});
+            setWalletConnected(true);
+            setAccountDisplay(account);
+            setActiveProvider(provider);
+        }
+        async function handleConnectToCoinBase(){
+            await activate(CoinbaseWallet);
+            setWalletConnected(true);
 
-    async function handleConnectToMetaMask(){
-        await activate(Injected);
-        setWalletConnected(true);
-    }
-    async function handleConnectToCoinBase(){
-        await activate(CoinbaseWallet);
-        setWalletConnected(true);
-    }
-    async function handleConnectToWalletConnector(){
-        setTimeout(() => activate(WalletConnect), 500);
-        setWalletConnected(true);
-    }
+            let tempProvider = await CoinbaseWallet.getProvider();
+            account = await tempProvider.request({ method: 'eth_requestAccounts'});
+            setAccountDisplay(account);
+            setActiveProvider(tempProvider);
+        }
+        async function handleConnectToWalletConnector(){
+            setTimeout(() => activate(WalletConnect), 500);
+            setWalletConnected(true);
+
+            let tempProvider = await WalletConnect.getProvider();
+            account = await tempProvider.request({ method: 'eth_requestAccounts'});
+            setAccountDisplay(account);
+            setActiveProvider(tempProvider);
+        }
     
 
     //NAV MENU FUNCTIONS
-        function handleNavMenuDisplay(){
+        function handleNavMenuToggle(){
             $('#navMenu').slideToggle();
+        }
+        function handleHideNavMenu(){
+            $('#navMenu').slideUp();
         }
 
     //MINT Functions
@@ -83,43 +106,53 @@ const App = () => {
                 window.alert("Connect your wallet first")
                 return;
             }
-            let provider = await Injected.getProvider();
-            let myWeb3js = new Web3(provider);
+            let myWeb3js = new Web3(activeProvider);
             let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
-            let accounts = await provider.request({ method: 'eth_requestAccounts'});
+            let accounts = await activeProvider.request({ method: 'eth_requestAccounts'});
             await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei("0.08", "ether") })
         }
 
     
     //Display the Body
-    const [displayPage, setDisplayPage] = useState("Home")
-    function handlePageChange(pageName){
-        setDisplayPage(pageName);
-        $('#navMenu').slideToggle();
-    }
-    function renderBody(){
-        if (displayPage === "Home"){
-            return <Home />;
+        const [displayPage, setDisplayPage] = useState("Home")
+        function handlePageChange(pageName){
+            setDisplayPage(pageName);
+            $('#navMenu').slideToggle();
         }
-        if (displayPage === "Mint"){
-            return <Mint handleClick = {handleMint}/>;
+        function renderBody(){
+            if (displayPage === "Home"){
+                return (
+                    <div onClick={handleHideNavMenu}>
+                        <Home />
+                    </div>
+                    );
+            }
+            if (displayPage === "Mint"){
+                return (
+                    <div onClick={handleHideNavMenu}>
+                        <Mint handleClick = {handleMint}/>
+                    </div>
+                    );
+            }
+            if (displayPage === "Check Ticket"){
+                return (
+                    <div onClick={handleHideNavMenu}>
+                        <TicketCheck/>
+                    </div>
+                    );
+            }
+            return <div></div>;
         }
-        if (displayPage === "Check Ticket"){
-            return <TicketCheck />;
-        }
-        return <div></div>;
-    }
     
-        //right now the button only connects to metamask... need to create a modal to pop up when clicking that can handle all three
     return (
         <div>
             
             <ButtonAppBar 
-                activateNavMenu = {handleNavMenuDisplay} 
+                activateNavMenu = {handleNavMenuToggle} 
                 connectToMetaMask = {handleConnectToMetaMask} 
                 connectToCoinBase ={handleConnectToCoinBase}
                 connectToWalletConnector = {handleConnectToWalletConnector}
-                activeAccount = {account? `${account.substring(0,5)}...${account.substring(account.length -5)}` : "Connect Wallet"}
+                activeAccount = {accountDisplay? `${String(accountDisplay).substring(0,5)}...${String(accountDisplay).substring(String(accountDisplay).length -5)}` : "Connect Wallet"}
             />
             <div id='navMenu' style={{display:"none"}}>
                 <NavMenu changePage = {handlePageChange}/>                
