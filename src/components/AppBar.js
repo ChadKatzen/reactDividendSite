@@ -45,7 +45,7 @@ const ButtonAppBar = (props) => {
               Tessera
             </Typography>
 
-            <Button color={connected()? "lightGreen": "inherit"} variant={connected()?"contained":"outlined"} onClick={handleConnectWallet}>{props.activeAccount}</Button>
+            <Button color={connected()? "yellow": "inherit"} variant={connected()?"contained":"outlined"} onClick={handleConnectWallet}>{props.activeAccount}</Button>
           
           </Toolbar>
         </AppBar>

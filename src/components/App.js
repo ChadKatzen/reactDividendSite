@@ -15,7 +15,6 @@ import ABI from '../globalHelperScripts/NFTABI.js';
 
 //Components
 import ButtonAppBar from './AppBar';
-import AppBarFiller from './AppBarFiller.js';
 import NavMenu from './NavMenu';
 import Mint from './Mint';
 import Home from'./Home';

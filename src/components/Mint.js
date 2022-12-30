@@ -7,7 +7,7 @@ function Mint(props) {
     <Box textAlign = "center">
       <br/>
       <br/>
-      <Button variant="contained" alignment = "center" onClick={props.handleClick}>Mint</Button>
+      <Button variant="contained" alignment = "center" color="yellow" onClick={props.handleClick}>Mint</Button>
     </Box>
   );
 }
