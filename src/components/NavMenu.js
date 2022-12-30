@@ -1,5 +1,6 @@
 import React from 'react';
 import Divider from '@mui/material/Divider';
+import { Box } from '@mui/system';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -21,9 +22,9 @@ function NavMenu(props) {
   return (
     <Paper 
       sx={{ width: 1}} square={true}>
-      <MenuList>
-        <MenuItem style ={{padding:0}}>
-            <ListItemText style={{ textAlign: "center" }} onClick={handleClick}>Home</ListItemText>
+      <MenuList >
+        <MenuItem style ={{padding:0}} >
+            <ListItemText  style={{ textAlign: "center" }} onClick={handleClick}>Home</ListItemText>
         </MenuItem>
         <Divider />
         <MenuItem style ={{padding:0}}>
@@ -33,7 +34,7 @@ function NavMenu(props) {
         <MenuItem style ={{padding:0}}>
             <ListItemText style={{ textAlign: "center" }} onClick={handleClick}>Check Ticket</ListItemText>
         </MenuItem>
-    
+
       </MenuList>
     </Paper>
   );

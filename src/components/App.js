@@ -15,6 +15,7 @@ import ABI from '../globalHelperScripts/NFTABI.js';
 
 //Components
 import ButtonAppBar from './AppBar';
+import AppBarFiller from './AppBarFiller.js';
 import NavMenu from './NavMenu';
 import Mint from './Mint';
 import Home from'./Home';
@@ -90,6 +91,7 @@ const App = () => {
             setAccountDisplay(account);
             setActiveProvider(tempProvider);
         }
+
     
 
     //NAV MENU FUNCTIONS
@@ -146,14 +148,15 @@ const App = () => {
     
     return (
         <div>
-            
             <ButtonAppBar 
                 activateNavMenu = {handleNavMenuToggle} 
                 connectToMetaMask = {handleConnectToMetaMask} 
                 connectToCoinBase ={handleConnectToCoinBase}
                 connectToWalletConnector = {handleConnectToWalletConnector}
                 activeAccount = {accountDisplay? `${String(accountDisplay).substring(0,5)}...${String(accountDisplay).substring(String(accountDisplay).length -5)}` : "Connect Wallet"}
+                
             />
+
             <div id='navMenu' style={{display:"none"}}>
                 <NavMenu changePage = {handlePageChange}/>                
             </div>

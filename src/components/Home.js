@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 
 function Home(props) {
   return (
-    <Box textAlign = "center">
+    <Box textAlign = "center" >
         <br/>
         <br/>
         <Button variant="contained" alignment = "center" onClick={props.handleClick}>Home </Button>

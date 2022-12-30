@@ -74,7 +74,14 @@ export default function WalletModal(props) {
                 </Typography>
             </Button>   
         </Grid>
-        <Grid item xs={12}>
+        
+      </Grid>
+    </Box>
+
+  );
+}
+
+/*<Grid item xs={12}>
             <Button 
                 sx={{width:ModalWidth}} 
                 variant = "outlined" 
@@ -87,8 +94,4 @@ export default function WalletModal(props) {
                     </Typography>
                 </Button>
         </Grid>
-      </Grid>
-    </Box>
-
-  );
-}
+        */

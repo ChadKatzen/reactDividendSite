@@ -11,23 +11,17 @@ import WalletModal from './WalletModal';
 
 
 
-const ButtonAppBar = (props) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const AppBarFiller = (props) => {
 
   function connected(){
     return !(props.activeAccount === "Connect Wallet")
   }
 
-  function handleConnectWallet(){
-    handleOpen();
-  }
 
 
   return (
     <div>
-        <AppBar position="static">
+        <AppBar position="static" width = "100%">
           <Toolbar>
 
             <IconButton
@@ -45,28 +39,15 @@ const ButtonAppBar = (props) => {
               Tessera
             </Typography>
 
-            <Button color={connected()? "lightGreen": "inherit"} variant={connected()?"contained":"outlined"} onClick={handleConnectWallet}>{props.activeAccount}</Button>
+            <Button color={connected()? "lightGreen": "inherit"} variant={connected()?"contained":"outlined"}>{props.activeAccount}</Button>
           
           </Toolbar>
         </AppBar>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <WalletModal 
-          connectToMetaMask={props.connectToMetaMask}
-          connectToCoinBase={props.connectToCoinBase}
-          connectToWalletConnector={props.connectToWalletConnector}
-          handleClose={handleClose}
-        />
-      </Modal>
+      
       </div>
       
   );
 }
 
-export default ButtonAppBar;
-
+export default AppBarFiller;

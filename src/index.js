@@ -15,8 +15,12 @@ function getLibrary(provider) {
 
 const theme = createTheme({
     palette:{
-       
+      primary:{
+        main:'#2a2a2a',
+        contrastText:'#FBD96D',
+      },
       lightGreen: createColor('#aed581'),
+      textOnTop: '#FBD96D',
 
     },
     typography: {
