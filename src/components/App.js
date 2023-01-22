@@ -19,6 +19,8 @@ import NavMenu from './NavMenu';
 import Mint from './Mint';
 import Home from'./Home';
 import TicketCheck from './TicketCheck.js';
+import { makeStyles } from '@mui/styles';
+
 
 
 //CSS
@@ -46,10 +48,22 @@ let $ = window.$ = window.jQuery = jQuery;
     supportedChainIds: [1, 3, 4, 5, 42]
    });
 
+///Full Screen
+   const useStyles = makeStyles((theme) => ({
+    root:{
+     
+      height: '100vh',
+      width:'100vw',
+      zIndex: 999,
+      alignItems: 'left',
+      justifyContent: 'left',
+    },
+  }));
+  
 
 
 const App = () => {
-    
+    const classes = useStyles();
     //Contract State & Wallet Globals 
         const [NFTAddress, setNFTAddress] = useState("0x7DAfAC25D7FF95f878B9bb08E9bA3fAEd5f72418");
         const [WalletConnected, setWalletConnected] = useState(false);
@@ -144,9 +158,16 @@ const App = () => {
             }
             return <div></div>;
         }
+
+
+
+
+
     
     return (
-        <div>
+        <div className={classes.root}>
+
+            
             <ButtonAppBar 
                 activateNavMenu = {handleNavMenuToggle} 
                 connectToMetaMask = {handleConnectToMetaMask} 

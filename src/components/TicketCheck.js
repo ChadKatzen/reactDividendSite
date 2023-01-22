@@ -7,7 +7,7 @@ function TicketCheck(props) {
     <Box textAlign = "center">
         <br/>
         <br/>
-        <Button variant="contained" alignment = "center" onClick={props.handleClick}>Ticket Check</Button>
+        <Button variant="contained" alignment = "center" color="yellow" onClick={props.handleClick}>Ticket Check</Button>
     </Box>
   );
 }

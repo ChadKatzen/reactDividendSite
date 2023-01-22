@@ -1,17 +1,10 @@
 import React from 'react';
 import Divider from '@mui/material/Divider';
 import { Box } from '@mui/system';
-import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
-import { yellow } from '@mui/material/colors';
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
@@ -21,7 +14,7 @@ function NavMenu(props) {
     props.changePage(event.target.innerHTML);
   }
   let textColor = "#FBD96D";
-  let backgroundColor = '#2a2a2a';
+  let backgroundColor = '#000000';//'#2a2a2a';
   const MyTheme = createTheme({
     palette: {
       primary:{

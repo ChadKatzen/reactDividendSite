@@ -4,7 +4,6 @@ import App from './components/App';
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Paper } from '@mui/material';
 
 function getLibrary(provider) {
     return new Web3Provider(provider);
@@ -15,7 +14,8 @@ function getLibrary(provider) {
   const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 
 const yellow = "#FBD96D";
-const backBlack = '#2a2a2a';
+const backBlack = '#000000';//'#2a2a2a';
+
 
 const theme = createTheme({
     palette:{
@@ -29,20 +29,25 @@ const theme = createTheme({
       lightGreen: createColor('#aed581'),
       lightGrey: createColor('#111111'),
     },
-
-
     typography: {
       button: {
         textTransform: 'none',
       },
+      
     },
-
 })
 
+
+
+
+
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
-        <Web3ReactProvider getLibrary={getLibrary}>
-            <App />
-        </Web3ReactProvider>
-    </ThemeProvider>
+
+  <ThemeProvider theme={theme}>
+  <Web3ReactProvider getLibrary={getLibrary}>
+      <App />
+  </Web3ReactProvider>
+</ThemeProvider>
+
+    
     , document.getElementById('root'));
