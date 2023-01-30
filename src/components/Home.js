@@ -3,7 +3,8 @@ import { Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Description from './HomeComponents/Description';
 import Banner from './HomeComponents/Banner';
-import HowItWorks from './HomeComponents/HowItWorks';
+import Schedule from './HomeComponents/Schedule';
+import FAQ from './HomeComponents/FAQ';
 
 
 let yellow ="#FBD96D";
@@ -32,7 +33,9 @@ function Home(props) {
       <Banner/>
       <Description/>
       <br/>
-      <HowItWorks/>
+      <Schedule/>
+      <br/>
+      <FAQ/>
     </div>
 
   );
