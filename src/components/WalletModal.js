@@ -1,15 +1,11 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MetaMaskIcon from '../images/metamask.png';
 import CoinBaseIcon from '../images/coinbase.png';
 import WalletConnectIcon from '../images/walletconnect.png';
 import Button from '@mui/material/Button';
-import MenuIcon from '@mui/icons-material/Menu';
-import IconButton from '@mui/material/IconButton';
 import { Avatar } from '@mui/material';
 
 

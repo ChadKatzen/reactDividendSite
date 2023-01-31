@@ -1,5 +1,5 @@
 //Big Libraries
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Web3 from 'web3';
 import { useWeb3React } from '@web3-react/core'
 import jQuery from "jquery";

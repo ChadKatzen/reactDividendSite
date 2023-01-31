@@ -1,69 +1,13 @@
 import React, {useState} from 'react';
-import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
-import {Grid} from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import jQuery from "jquery";
-import DropDownBox from '../ReusedComponents/dropDownBox';
+import {Box} from '@mui/system';
+import {Grid, Typography} from '@mui/material';
+import DropDownBox from '../ReusedComponents/DropDownBox';
 
-//SETUP JQUERRY
-let $ = window.$ = window.jQuery = jQuery;
 
 let yellow ="#FBD96D";
-let lightYellow="#fcf2d2";
-const backBlack = '#000000';//#2a2a2a';
-let buttonBlack = false;
 
 function FAQ(){
     const [ButtonColor, setButtonColor] = useState(yellow);
-
-
-
-    function handleCostToggle(){
-        $('#CostToMint').slideToggle();
-
-        if($('#CostToMintQ').css('background-color')=="rgb(251, 217, 109)")
-        {
-            $('#CostToMintQ').css("background-color", backBlack);
-            $('#CostToMintText').css("color", yellow)
-            setButtonColor(yellow);
-        }
-        else {
-            $('#CostToMintQ').css("background-color", yellow);
-            $('#CostToMintText').css("color", backBlack)
-            setButtonColor(backBlack);
-   }
-        
-    }
-    
-    function handleMintNumberToggle(){
-        $('#MintNumber').slideToggle();
-    }
-    function handleJackpotToggle(){
-        $('#Jackpot').slideToggle();
-    }
-    function handleEliminationsToggle(){
-        $('#Eliminations').slideToggle();
-    }
-    function handleWinnerToggle(){
-        $('#Winner').slideToggle();
-    }
-
-    function renderCostToMintButton(){
-        if (buttonBlack){
-            console.log("return black button")
-            return(
-                <MenuIcon sx ={{'color':backBlack}}  />
-            );
-        } else {
-            console.log("return yellow button")
-
-            return (
-                <MenuIcon sx ={{'color':yellow}} />
-            );
-        }
-    }
 
     return (
         <Box sx={{m:2}}>
@@ -117,7 +61,7 @@ function FAQ(){
             
 
         </Grid>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/>
         </Box>
     );
 }
