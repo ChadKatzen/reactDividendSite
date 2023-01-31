@@ -85,117 +85,36 @@ function FAQ(){
 
 
             <DropDownBox 
-                id="CostToMintTest"
-                question="testQ"
-                answer="testAnswer"
+                id="CostToMint"
+                question="#1 What is the cost to mint?"
+                answer="0.1 Eth"
             />
 
-            <Grid item xs = {12} sm={11} lg={11} xl={8}>
-                <Box id="CostToMintQ" bgcolor={backBlack} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleCostToggle} >
-                        <Typography id = "CostToMintText" variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:yellow}} >#1 What is the cost to mint?</Typography>
-                        <IconButton id = "CostToMintButton"
-                        size="large"
-                        edge="end"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 0.5 }}
-                        >
-                           <MenuIcon sx ={{'color':ButtonColor}} />
-                        </IconButton>
-                </Box>
+            <DropDownBox 
+              id="MintsPerWallet"
+              question="#2 How many mints per wallet?"
+              answer="There is no limit to the amount of tickets minted per wallet"
+            />
 
-                <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{display:"none"}} id="CostToMint">
-                    <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >0.1 Eth</Typography>
-                </Box>
-            </Grid>
+            <DropDownBox 
+              id="Jackpot"
+              question="#3 What is the jackpot?"
+              answer="The prize will be 100% of the mint. If the full 10,000 Lotto NFTs are minted, the jackpot will be 1,000 eth."
+            />
 
+            <DropDownBox 
+              id="Eliminations"
+              question="#4 Are eliminations random?"
+              answer="All eliminations are entirely random and pulled from the Lotto smart contract itself (we use a random number generating oracle). Because everything is on-chain, this might be the most transparent online lottery to date. For the remaining skeptics, you can find the smart contract code here on Etherscan."
+            />
 
 
-
-
-            <Grid item xs = {12} sm={11} lg={11} xl={8}>
-                <Box bgcolor={yellow} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleMintNumberToggle}>
-                        <Typography variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >#2 How many mints per wallet?</Typography>
-                        <IconButton
-                        size="large"
-                        edge="end"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 0.5 }}
-                        
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                </Box>
-
-                <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{display:"none"}} id="MintNumber">
-                    <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >There is no limit to the amount of tickets minted per wallet</Typography>
-                </Box>
-
-            </Grid>
-            <Grid item xs = {12} sm={11} lg={11} xl={8}>
-                <Box bgcolor={yellow} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleJackpotToggle}>
-                        <Typography variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >#3 What is the jackpot?</Typography>
-                        <IconButton
-                        size="large"
-                        edge="end"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 0.5 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                </Box>
-
-                <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{display:"none"}} id="Jackpot">
-                    <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >The prize will be 100% of the mint. If the full 10,000 Lotto NFTs are minted, the jackpot will be 1,000 eth.</Typography>
-                </Box>
-
+            <DropDownBox 
+              id="Winner"
+              question="#5 How is the winner paid?"
+              answer="The wallet holding the winning ticket will be able to withdraw directly from the Lotto smart contract. If you’ve won, you can withdraw using the ‘Check Ticket’ page of this site."
+            />
             
-            </Grid>
-
-            <Grid item xs = {12} sm={11} lg={11} xl={8}>
-                <Box bgcolor={yellow} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleEliminationsToggle} >
-                        <Typography variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >#4 Are eliminations random?</Typography>
-                        <IconButton
-                        size="large"
-                        edge="end"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 0.5 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                </Box>
-
-                <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{display:"none"}} id="Eliminations">
-                    <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >All eliminations are entirely random and pulled from the Lotto smart contract itself (we use a random number generating oracle). Because everything is on-chain, this might be the most transparent online lottery to date. For the remaining skeptics, you can find the smart contract code here on Etherscan.</Typography>
-                </Box>
-            
-            </Grid>
-
-            <Grid item xs = {12} sm={11} lg={11} xl={8} >
-                <Box bgcolor={yellow} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleWinnerToggle}>
-                        <Typography variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >#5 How is the winner paid?</Typography>
-                        <IconButton
-                        size="large"
-                        edge="end"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 0.5 }}
-                        
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                </Box>
-
-                <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{display:"none"}} id="Winner">
-                    <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >The wallet holding the winning ticket will be able to withdraw directly from the Lotto smart contract. If you’ve won, you can withdraw using the ‘Check Ticket’ page of this site.</Typography>
-                </Box>
-             
-            </Grid>
-
-
 
         </Grid>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

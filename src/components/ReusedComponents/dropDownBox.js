@@ -16,15 +16,14 @@ const backBlack = '#000000';//#2a2a2a';
 
 function DropDownBox(props){
     const [ButtonColor, setButtonColor] = useState(yellow);
+    const [Open, setOpen]= useState(false);
 
     function handleToggle(){
         $(`#${props.id}DescriptionBox`).slideToggle();
-
-        if($(`#${props.id}QuestionBox`).css('background-color')=="rgb(251, 217, 109)")
+        setOpen(~Open)
+       if(Open)
         {
-            $(`#${props.id}QuestionBox`).css("background-color", backBlack);
-            $(`#${props.id}QuestionText`).css("color", yellow)
-            setButtonColor(yellow);
+
         }
         else {
             $(`#${props.id}QuestionBox`).css("background-color", yellow);
@@ -33,9 +32,24 @@ function DropDownBox(props){
         }
     }
 
+    function handleMouseIn(){
+        $(`#${props.id}QuestionBox`).css("background-color", yellow);
+        $(`#${props.id}QuestionText`).css("color", backBlack)
+        setButtonColor(backBlack);
+    }
+
+    function handleMouseOut(){
+        if(~Open){
+            $(`#${props.id}QuestionBox`).css("background-color", backBlack);
+            $(`#${props.id}QuestionText`).css("color", yellow)
+            setButtonColor(yellow);
+        }
+
+    }
+
    return(
    <Grid item xs = {12} sm={11} lg={11} xl={8}>
-                <Box id={`${props.id}QuestionBox`} bgcolor={backBlack} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleToggle} >
+                <Box id={`${props.id}QuestionBox`} bgcolor={backBlack} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleToggle} onMouseOver ={handleMouseIn} onMouseLeave={handleMouseOut} >
                         <Typography id = {`${props.id}QuestionText`} variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:yellow}} >{props.question}</Typography>
                         <IconButton
                         size="large"

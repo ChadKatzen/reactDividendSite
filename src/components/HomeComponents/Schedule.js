@@ -33,19 +33,10 @@ function Schedule(props){
 
                         <Box bgcolor={yellow} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} >
                                     <Typography variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >Schedule</Typography>
-                                    <IconButton
-                                    size="large"
-                                    edge="end"
-                                    color="inherit"
-                                    aria-label="menu"
-                                    sx={{ mr: 0.5 }}
-                                    onClick = {handleScheduleToggle}
-                                    >
-                                        <MenuIcon />
-                                    </IconButton>
+                                   
                         </Box>
 
-                        <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{display:"none"}} id="ScheduleDescription">
+                        <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{}} id="ScheduleDescription">
                             <br/>
                             <br/>
                             <br/>
