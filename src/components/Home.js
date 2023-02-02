@@ -13,7 +13,7 @@ function Home(props) {
   return (
     <div>
       <Banner/>
-      <Description/>
+      <DescriptionTwo/>
       <HowItWorks/>
       <Schedule/>
       <br/>

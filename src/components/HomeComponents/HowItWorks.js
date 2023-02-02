@@ -15,6 +15,7 @@ function HowItWorks(){
             justifyContent="center"
             alignItems="center" >
                 <Grid item xs = {12} sm = {12} md ={11} lg={11}>
+               
                 <Box  sx={{m:1}}>
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{m: 6}}>
                         Lotto kicks off with an initial mint of up to 10,000 Lotto tickets. 
@@ -54,6 +55,8 @@ function HowItWorks(){
                         See below for a full schedule of eliminations.
                       </Typography>
                   </Box>
+
+                  
                 </Grid>
 
             </Grid>
