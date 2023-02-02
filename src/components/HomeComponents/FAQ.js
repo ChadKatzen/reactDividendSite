@@ -7,7 +7,6 @@ import DropDownBox from '../ReusedComponents/DropDownBox';
 let yellow ="#FBD96D";
 
 function FAQ(){
-    const [ButtonColor, setButtonColor] = useState(yellow);
 
     return (
         <Box sx={{m:2}}>

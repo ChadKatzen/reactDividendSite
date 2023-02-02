@@ -16,11 +16,6 @@ const useStyles = makeStyles((input) => ({
 }));
 
 
-const theme = createTheme({
-
-
-})
-
 
 
 function Description() {
@@ -35,7 +30,6 @@ function Description() {
 
             <Box sx={{ flexGrow: 1,m:4}}>
             <Typography variant="h2" style={{color:yellow}} >~Lotto~</Typography>
-            <br/>
             <br/>
             <br/>
             <Grid container direction="row"
@@ -56,13 +50,13 @@ function Description() {
                   <Box  sx={{mt:4, mb:4}}>
                     <Box className={classes.container}>
                       <Typography variant="h6" style={{color:yellow}} textAlign ="left" sx={{m: 6}}>
-                        Your chance at up to 1,000 eth
+                        Your shot at up to 1,000 eth
                         <br/><br/>
                         Week by week, Lotto tickets will be eliminated until one lucky winner remains
                         <br/><br/>
                         Each week your Lotto ticket survives, it’s value goes up
                         <br/><br/>
-                        Take profits early or sweat it to the end - For paper and diamond hands alike
+                        Take profits early or sweat it to the end
                       </Typography>
                     </Box>
                   </Box>

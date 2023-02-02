@@ -1,8 +1,11 @@
 import React from 'react';
 import Description from './HomeComponents/Description';
+import DescriptionTwo from './HomeComponents/DescriptionTwo';
 import Banner from './HomeComponents/Banner';
 import Schedule from './HomeComponents/Schedule';
 import FAQ from './HomeComponents/FAQ';
+import HowItWorks from './HomeComponents/HowItWorks';
+
 
 
 function Home(props) {
@@ -11,7 +14,7 @@ function Home(props) {
     <div>
       <Banner/>
       <Description/>
-      <br/>
+      <HowItWorks/>
       <Schedule/>
       <br/>
       <FAQ/>
