@@ -12,7 +12,7 @@ let $ = window.$ = window.jQuery = jQuery;
 let yellow ="#FBD96D";
 let lightYellow="#fcf2d2";
 const backBlack = '#000000';//#2a2a2a';
-
+let myFont = 'Poppins';
 
 function DropDownBox(props){
     const [ButtonColor, setButtonColor] = useState(yellow);
@@ -50,7 +50,7 @@ function DropDownBox(props){
    return(
    <Grid item xs = {12} sm={11} lg={11} xl={8}>
                 <Box id={`${props.id}QuestionBox`} bgcolor={backBlack} sx={{ ml:1.5, mr:1.5 , display:'flex', justifyContent: "space-between"}} onClick = {handleToggle} onMouseOver ={handleMouseIn} onMouseLeave={handleMouseOut} >
-                        <Typography id = {`${props.id}QuestionText`} variant="h5" sx={{ ml:3, pt:1, pb: 1}} style={{color:yellow}} >{props.question}</Typography>
+                        <Typography id = {`${props.id}QuestionText`} variant="h5" sx={{ ml:3, pt:1, pb: 1, fontFamily:myFont}} style={{color:yellow}} >{props.question}</Typography>
                         <IconButton
                         size="large"
                         edge="end"
@@ -62,7 +62,7 @@ function DropDownBox(props){
                         </IconButton>
                 </Box>
 
-                <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5}} style={{display:"none"}} id={`${props.id}DescriptionBox`}>
+                <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5, fontFamily:myFont}} style={{display:"none"}} id={`${props.id}DescriptionBox`}>
                     <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >{props.answer}</Typography>
                 </Box>
     </Grid>

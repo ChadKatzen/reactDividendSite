@@ -5,6 +5,7 @@ import DropDownBox from '../ReusedComponents/DropDownBox';
 
 
 let yellow ="#FBD96D";
+let myFont = 'Poppins';
 
 function FAQ(){
 
@@ -19,7 +20,7 @@ function FAQ(){
          >
             <Grid item xs={12}>
                 <Box textAlign='center'>
-                    <Typography variant="h2" style={{color:yellow}}>~FAQ~</Typography>
+                    <Typography variant="h2" style={{color:yellow}} sx={{fontFamily:myFont}}>FAQ</Typography>
                     <br/>
                     <br/>
                 </Box>
