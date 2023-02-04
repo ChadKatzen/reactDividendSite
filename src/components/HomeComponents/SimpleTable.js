@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Grid } from '@mui/material';
+import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
 
 const useStyles = makeStyles({
   table: {
@@ -9,9 +10,9 @@ const useStyles = makeStyles({
 });
 
 //COLORS
-let yellow ="#FBD96D";
-let lightYellow="#fcf2d2";
-const backBlack = '#000000';//#2a2a2a';
+let yellow =globalYellow;//"#FBD96D";
+let lightYellow=globalLightYellow;//"#fcf2d2";
+const backBlack =globalBackBlack;// '#000000';//#2a2a2a';
 
 export default function SimpleTable() {
   const classes = useStyles();

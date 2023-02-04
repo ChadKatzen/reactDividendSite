@@ -3,9 +3,11 @@ import {Box} from '@mui/system';
 import {Grid, Typography} from '@mui/material';
 import DropDownBox from '../ReusedComponents/DropDownBox';
 
+import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
 
-let yellow ="#FBD96D";
-let myFont = 'Poppins';
+
+let yellow =globalYellow;//"#FBD96D";
+let myFont =globalFont;//'Poppins';
 
 function FAQ(){
 
@@ -56,7 +58,7 @@ function FAQ(){
             <DropDownBox 
               id="Winner"
               question="#5 How is the winner paid?"
-              answer="The wallet holding the winning ticket will be able to withdraw directly from the Lotto smart contract. If you’ve won, you can withdraw using the ‘Check Ticket’ page of this site."
+              answer="The wallet holding the winning ticket will be able to withdraw directly from the Lotto smart contract. If you’ve won, you can withdraw using the check ticket tab."
             />
             
 

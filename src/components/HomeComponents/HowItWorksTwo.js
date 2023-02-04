@@ -2,9 +2,12 @@ import React from 'react';
 import {Box} from '@mui/system';
 import { Grid, Typography } from '@mui/material';
 import ticketImage from '../../images/spinningTicket.gif';
+import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
 
-let yellow ="#FBD96D";
-let myFont = 'Poppins';
+
+
+let yellow =globalYellow;//"#FBD96D";
+let myFont =globalFont;//'Poppins';
 
 
 function HowItWorksTwo(){
@@ -15,7 +18,7 @@ function HowItWorksTwo(){
 
       
         <Box textAlign="center">
-                <Grid container justifyContent="center" alignItems="center" justify="space-between">
+                <Grid container wrap='wrap-reverse' justifyContent="center" alignItems="center" justify="space-between">
                   <Grid item xs= {11} sm = {11} md = {6} lg={6}>
 
                       <Box 

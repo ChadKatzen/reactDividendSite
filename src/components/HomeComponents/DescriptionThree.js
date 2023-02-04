@@ -7,7 +7,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import ticketImage from '../../images/loser.gif';
 
-let yellow ="#FBD96D";
+
+import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
+let yellow =globalYellow;//"#FBD96D";
+let myFont = globalFont;//'Poppins';
+
 
 const useStyles = makeStyles((input) => ({
   container: {
@@ -15,7 +19,7 @@ const useStyles = makeStyles((input) => ({
   },
 }));
 
-let myFont = 'Poppins';
+
 
 
 

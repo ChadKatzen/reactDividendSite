@@ -5,14 +5,15 @@ import {Grid} from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import jQuery from "jquery";
+import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
 
 //SETUP JQUERRY
 let $ = window.$ = window.jQuery = jQuery;
 
-let yellow ="#FBD96D";
-let lightYellow="#fcf2d2";
-const backBlack = '#000000';//#2a2a2a';
-let myFont = 'Poppins';
+let yellow =globalYellow;//"#FBD96D";
+let lightYellow=globalLightYellow;//"#fcf2d2";
+const backBlack =globalBackBlack;// '#000000';//#2a2a2a';
+let myFont =globalFont;// 'Poppins';
 
 function DropDownBox(props){
     const [ButtonColor, setButtonColor] = useState(yellow);
