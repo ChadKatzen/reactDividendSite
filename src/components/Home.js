@@ -2,8 +2,10 @@ import React from 'react';
 import Description from './HomeComponents/Description';
 import DescriptionTwo from './HomeComponents/DescriptionTwo';
 import DescriptionThree from './HomeComponents/DescriptionThree';
+import DescriptionFour from './HomeComponents/DescriptionFour';
 import Banner from './HomeComponents/Banner';
 import Schedule from './HomeComponents/Schedule';
+import ScheduleTwo from './HomeComponents/ScheduleTwo';
 import FAQ from './HomeComponents/FAQ';
 import HowItWorks from './HomeComponents/HowItWorks';
 import HowItWorksTwo from './HomeComponents/HowItWorksTwo';
@@ -20,7 +22,7 @@ function Home(props) {
       <br/>
       <br/>
       <br/>
-      <DescriptionThree/>
+      <DescriptionFour handlePageChangeNoToggle= {props.handlePageChangeNoToggle}/>
       <br/>
       <br/>
       <br/>

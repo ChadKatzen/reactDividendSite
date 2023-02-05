@@ -134,11 +134,15 @@ const App = () => {
             setDisplayPage(pageName);
             $('#navMenu').slideToggle();
         }
+        function handlePageChangeNoToggle(pageName){
+            setDisplayPage(pageName);
+        }
+
         function renderBody(){
             if (displayPage === "Home"){
                 return (
                     <div onClick={handleHideNavMenu}>
-                        <Home />
+                        <Home handlePageChangeNoToggle ={handlePageChangeNoToggle}/>
                     </div>
                     );
             }

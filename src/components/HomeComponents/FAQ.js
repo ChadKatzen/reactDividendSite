@@ -39,13 +39,13 @@ function FAQ(){
             <DropDownBox 
               id="MintsPerWallet"
               question="#2 How many mints per wallet?"
-              answer="There is no limit to the amount of tickets minted per wallet"
+              answer="There is no limit to the amount of tickets minted per wallet."
             />
 
             <DropDownBox 
               id="Jackpot"
               question="#3 What is the jackpot?"
-              answer="The prize will be 100% of the mint. If the full 10,000 Lotto NFTs are minted, the jackpot will be 1,000 eth."
+              answer="The prize will be 100% of the mint. If the full 10,000 Lotto NFTs are minted, the jackpot will be 1,000 Eth."
             />
 
             <DropDownBox 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box} from '@mui/system';
-import { Grid, Typography } from '@mui/material';
-import ticketImage from '../../images/spinningTicket.gif';
+import { Button, Grid, Typography } from '@mui/material';
+import ticketImage from '../../images/NFTTicket.gif';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
 
 
@@ -10,7 +10,12 @@ let yellow =globalYellow;//"#FBD96D";
 let myFont =globalFont;//'Poppins';
 
 
+
 function HowItWorksTwo(){
+    function buttonHandle(){
+      return;
+    }
+
     return (
       <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={12} sm={11}>
@@ -23,8 +28,10 @@ function HowItWorksTwo(){
 
                       <Box 
                       component="img"
+                     
                       sx={{
                           m:4,
+                          mr:6,
                           maxHeight: { xs: 300, sm: 280 , md: 350, lg: 350, xl: 400},
                           flexGrow: 1
                       }}
@@ -41,11 +48,14 @@ function HowItWorksTwo(){
                         Then, every Saturday at midnight, a percentage of Lotto tickets will be eliminated from the prize pool and will no longer have a chance of taking home the jackpot.
                         Ticket images will be updated to reflect eliminations, and the status of any ticket can always be checked on the check ticket tab. 
                       </Typography>
-                    
+                      
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{mt: 3,ml: 3, mr:3,mb:6 ,fontFamily:myFont}}>
                         If your ticket is eliminated, it can be burned to guarantee whitelist access to the next Lotto drop. 
                         See below for a full schedule of eliminations.
                       </Typography>
+
+                      
+
                     </Box>
                   </Grid>
 
