@@ -19,8 +19,9 @@ import NavMenu from './NavMenu';
 import Mint from './Mint';
 import Home from'./Home';
 import TicketCheck from './TicketCheck.js';
+import Footer from './Footer.js';
 import { makeStyles } from '@mui/styles';
-
+import { Grid } from '@mui/material';
 
 
 //CSS
@@ -49,16 +50,16 @@ let $ = window.$ = window.jQuery = jQuery;
    });
 
 ///Full Screen
-   const useStyles = makeStyles((theme) => ({
-    root:{
-     
-      height: '100vh',
-      width:'100vw',
-      zIndex: 999,
-      alignItems: 'left',
-      justifyContent: 'left',
+const useStyles = makeStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
     },
-  }));
+    main: {
+      flex: '0',
+    },
+  });
   
 
 
@@ -168,26 +169,33 @@ const App = () => {
 
 
     
-    return (
-        <div className={classes.root}>
+    return ( 
+        <div >
+            <Grid container justifyContent='space-between' className={classes.root}> 
+                <Grid item xs={12} className={classes.main}>
+                    <ButtonAppBar 
 
-            
-            <ButtonAppBar 
-                activateNavMenu = {handleNavMenuToggle} 
-                connectToMetaMask = {handleConnectToMetaMask} 
-                connectToCoinBase ={handleConnectToCoinBase}
-                connectToWalletConnector = {handleConnectToWalletConnector}
-                activeAccount = {accountDisplay? `${String(accountDisplay).substring(0,5)}...${String(accountDisplay).substring(String(accountDisplay).length -5)}` : "Connect Wallet"}
+                        activateNavMenu = {handleNavMenuToggle} 
+                        connectToMetaMask = {handleConnectToMetaMask} 
+                        connectToCoinBase ={handleConnectToCoinBase}
+                        connectToWalletConnector = {handleConnectToWalletConnector}
+                        activeAccount = {accountDisplay? `${String(accountDisplay).substring(0,5)}...${String(accountDisplay).substring(String(accountDisplay).length -5)}` : "Connect Wallet"}
+                        
+                    />
+
+                    <div id='navMenu' style={{display:"none"}}>
+                        <NavMenu changePage = {handlePageChange}/>                
+                    </div>
+                    <div>
+                        {renderBody()}
+                    </div>
                 
-            />
+                </Grid>
 
-            <div id='navMenu' style={{display:"none"}}>
-                <NavMenu changePage = {handlePageChange}/>                
-            </div>
-            <div>
-                {renderBody()}
-            </div>
-            
+                <Grid item xs={12}>
+                    <Footer id="footer" />  
+                </Grid>
+            </Grid>
         </div>
     );
 }

@@ -25,12 +25,13 @@ function Home(props) {
       <DescriptionFour handlePageChangeNoToggle= {props.handlePageChangeNoToggle}/>
       <br/>
       <br/>
-      <br/>
       <HowItWorksTwo/>
       <br/>
       <br/>
       <br/>
       <SimpleTable/>
+      <br/>
+      <br/>
       <br/>
       <FAQ/>
     </div>

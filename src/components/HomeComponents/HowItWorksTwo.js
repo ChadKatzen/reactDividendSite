@@ -18,21 +18,21 @@ function HowItWorksTwo(){
 
     return (
       <Grid container justifyContent="center" alignItems="center">
-        <Grid item xs={12} sm={11}>
+        <Grid item xs={12} sm={11} xl= {8}>
 
 
       
         <Box textAlign="center">
                 <Grid container wrap='wrap-reverse' justifyContent="center" alignItems="center" justify="space-between">
-                  <Grid item xs= {11} sm = {11} md = {6} lg={6}>
+                  <Grid item xs= {11} sm = {11} md = {11} lg={6}>
 
                       <Box 
                       component="img"
                      
                       sx={{
                           m:4,
-                          mr:6,
-                          maxHeight: { xs: 300, sm: 280 , md: 350, lg: 350, xl: 400},
+                          mr:{md:4, lg:8},
+                          maxHeight: { xs: 200, sm: 250 , md: 250, lg: 350, xl: 400},
                           flexGrow: 1
                       }}
                       alt="Place Holder Lottery Ticket"
@@ -40,7 +40,7 @@ function HowItWorksTwo(){
                       />
                   </Grid>
 
-                  <Grid item xs = {12} sm ={12} md = {6} lg ={6}>
+                  <Grid item xs = {11} sm ={12} md = {12} lg ={6}>
                     <Box>
                       <Typography variant="h2" style={{color:yellow}} textAlign ="left" sx={{ml:3, mt:3, fontFamily:myFont,fontWeight: 'bold'}} >How It Works</Typography>
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{ml: 3, mr:3, mt:3,fontFamily:myFont}}>

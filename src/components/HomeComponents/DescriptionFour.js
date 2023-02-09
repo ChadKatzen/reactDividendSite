@@ -37,13 +37,13 @@ function DescriptionFour(props) {
     return (
 
     <Grid container justifyContent="center" alignItems="center">
-        <Grid item xs={12} sm={11}>
+        <Grid item xs={12} sm={11} xl = {8}>
 
 
         
             <Box textAlign="center">
                 <Grid container justifyContent="center" alignItems="center" justify="space-between">
-                    <Grid item xs= {12} sm = {12} md = {9} lg={9}>
+                    <Grid item xs= {11} sm = {12} md = {9} lg={9}>
                         <Box>
                             <Typography variant="h2" style={{color:yellow}} textAlign ="left" sx={{ml:3, mt:0, fontFamily:myFont, fontWeight: 'bold'}} >Lotto</Typography>
                             

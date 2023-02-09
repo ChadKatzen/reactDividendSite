@@ -4,4 +4,25 @@ body{
     margin:0;
 
   }
+/*
+html, body {
+  height:100%;
+}
 
+#container {
+  min-height: 100%;
+}
+
+#mainContent {
+  overflow: auto;
+  padding-bottom: 500px;
+}
+
+#footer {
+  background-color: white;
+  position: relative;
+  height: 500px;
+  margin-top:-500px;
+  clear:both;
+}
+*/
