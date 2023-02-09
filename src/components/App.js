@@ -75,13 +75,36 @@ const App = () => {
         async function handleConnectToMetaMask(){
             let provider;
             //Filter through all injected providers to get Metamask
+            /*
             let providers = await Injected.getProvider();
-            if (providers.providers.length) {
-                providers.providers.forEach(async (p) => {
-                    console.log(p)
-                if (p.isMetaMask) provider = p;
-                });
+            try{
+                if (providers.providers.length) {
+                    providers.providers.forEach(async (p) => {
+                        console.log(p)
+                    if (p.isMetaMask) provider = p;
+                    });
+                }
+            } catch (err) {
+                try{
+                    if (providers.length) {
+                        providers.forEach(async (p) => {
+                            console.log(p)
+                        if (p.isMetaMask) provider = p;
+                        });
+                    }
+                } catch(err){
+                    window.alert("it still didn't work")
+                }
+               
             }
+            */
+            try {
+                provider = window.ethereum.providers.find((provider) => provider.isMetaMask);
+            } catch (error) {
+                provider = window.ethereum;
+            }   
+            
+            
             account = await provider.request({ method: 'eth_requestAccounts'});
             setWalletConnected(true);
             setAccountDisplay(account);
@@ -171,9 +194,9 @@ const App = () => {
     
     return ( 
         <div >
-            <Grid container justifyContent='space-between' className={classes.root}> 
+            <Grid container justifyContent='space-between' style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}} > 
                 <Grid item xs={12} className={classes.main}>
-                    <ButtonAppBar 
+                    <ButtonAppBar  
 
                         activateNavMenu = {handleNavMenuToggle} 
                         connectToMetaMask = {handleConnectToMetaMask} 
