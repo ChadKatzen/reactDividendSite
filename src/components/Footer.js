@@ -22,7 +22,7 @@ function Footer(){
         <Box bgcolor={globalYellow} >
             <Grid container alignItems="center" justifyContent="center">
                 <Grid item xs={12}>
-                    <Typography sx={{mt:2}} variant="h6" textAlign ="center">STAY UPDATED | DONT MISS OUT</Typography>
+                    <Typography sx={{ml:1.2, mt:2}} variant="h6" textAlign ="center">STAY UPDATED | DONT MISS OUT</Typography>
                 </Grid>
 
                     <IconButton
