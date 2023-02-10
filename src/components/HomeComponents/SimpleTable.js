@@ -68,11 +68,11 @@ export default function SimpleTable() {
   return (
     <Grid container justifyContent="center" alignItems="center" >
       <Grid item xs={12} sm ={11} md = {11} lg={11} xl={8}>
-        <TableContainer component={Paper}>
+        <TableContainer style={{  'border-radius': '12px'}}  component={Paper}>
           <ThemeProvider theme={theme}>
 
           
-            <Table  sx={{ borderRadius: 200 }} className={classes.table} aria-label="simple table" >
+            <Table  className={classes.table} aria-label="simple table" >
               <TableHead>
                 <TableRow style={{backgroundColor: yellow}}>
                   <TableCell sx={{p:0}} className={classes.headerCell} align="center" style={{ width: '33%', height:'50px',borderBottom: '2px solid black' }}>
