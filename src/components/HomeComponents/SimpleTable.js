@@ -72,7 +72,7 @@ export default function SimpleTable() {
           <ThemeProvider theme={theme}>
 
           
-            <Table className={classes.table} aria-label="simple table" >
+            <Table  sx={{ borderRadius: 200 }} className={classes.table} aria-label="simple table" >
               <TableHead>
                 <TableRow style={{backgroundColor: yellow}}>
                   <TableCell sx={{p:0}} className={classes.headerCell} align="center" style={{ width: '33%', height:'50px',borderBottom: '2px solid black' }}>

@@ -7,7 +7,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Modal from '@mui/material/Modal';
 import WalletModal from './WalletModal';
-
+import TwitterIcon from '@mui/icons-material/Twitter'
+import { ReactComponent as DiscordIcon } from '../images/discord.svg';
+import {ReactComponent as OpenSeaSVG} from '../images/OpenSeaTransparent2.svg';
+import { SvgIcon } from '@mui/material';
 
 
 const ButtonAppBar = (props) => {
@@ -22,6 +25,14 @@ const ButtonAppBar = (props) => {
   function handleConnectWallet(){
     handleOpen();
   }
+
+  function OpenSeaIcon(props){
+    return (
+        <SvgIcon {...props} component={OpenSeaSVG} inheritViewBox>
+
+        </SvgIcon> 
+        );
+    }
 
 
   return (
@@ -44,7 +55,37 @@ const ButtonAppBar = (props) => {
               Lotto
             </Typography>
 
-            <Button color={connected()? "yellow": "inherit"} variant={connected()?"contained":"outlined"} onClick={handleConnectWallet}>{props.activeAccount}</Button>
+
+
+            <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mt: 0.3, mb: 0.3, mr:0.2, ml:0.2}}
+                    >
+                    <TwitterIcon />
+                    </IconButton>   
+                    <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mt: 0.3, mb: 0.3, mr:0.2, ml:0.2}}
+                    >
+                    <SvgIcon component={DiscordIcon}  inheritViewBox>
+                    </SvgIcon>   
+                    </IconButton>   
+                    <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mt: 0.3, mb: 0.3,  mr:0.2, ml:0.2}} 
+                    >
+                        <OpenSeaIcon color="blue" />
+                    </IconButton> 
+            <Button sx={{ml:1}} color={connected()? "yellow": "inherit"} variant={connected()?"contained":"outlined"} onClick={handleConnectWallet}>{props.activeAccount}</Button>
           
           </Toolbar>
         </AppBar>
