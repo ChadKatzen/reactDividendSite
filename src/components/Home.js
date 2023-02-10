@@ -25,7 +25,7 @@ function Home(props) {
       <DescriptionFour handlePageChangeNoToggle= {props.handlePageChangeNoToggle}/>
       <br/>
       <br/>
-      <HowItWorksTwo/>
+      <HowItWorksTwo handlePageChangeNoToggle= {props.handlePageChangeNoToggle}/>
       <br/>
       <br/>
       <br/>

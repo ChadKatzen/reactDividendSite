@@ -158,6 +158,7 @@ const App = () => {
             setDisplayPage(pageName);
             $('#navMenu').slideToggle();
         }
+
         function handlePageChangeNoToggle(pageName){
             setDisplayPage(pageName);
         }
@@ -203,7 +204,7 @@ const App = () => {
                         connectToCoinBase ={handleConnectToCoinBase}
                         connectToWalletConnector = {handleConnectToWalletConnector}
                         activeAccount = {accountDisplay? `${String(accountDisplay).substring(0,5)}...${String(accountDisplay).substring(String(accountDisplay).length -5)}` : "Connect Wallet"}
-                        
+                        handlePageChangeNoToggle ={handlePageChangeNoToggle}
                     />
 
                     <div id='navMenu' style={{display:"none"}}>

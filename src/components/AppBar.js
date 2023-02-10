@@ -35,6 +35,11 @@ const ButtonAppBar = (props) => {
     }
 
 
+  function handleLogoClick(){
+    props.handlePageChangeNoToggle("Home")
+  }
+
+
   return (
     <div>
         <AppBar position="static">
@@ -51,10 +56,12 @@ const ButtonAppBar = (props) => {
               <MenuIcon />
             </IconButton>
 
-            <Typography component="div" sx={{ flexGrow: 1 }}>
+            <Typography style={{ 'cursor': 'pointer'}} component="div"  onClick={handleLogoClick}>
               Lotto
             </Typography>
-
+            <Typography component="div" sx={{ flexGrow: 1 }} >
+              
+            </Typography>
 
 
             <IconButton

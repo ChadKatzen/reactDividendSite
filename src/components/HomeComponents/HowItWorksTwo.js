@@ -11,9 +11,9 @@ let myFont =globalFont;//'Poppins';
 
 
 
-function HowItWorksTwo(){
-    function buttonHandle(){
-      return;
+function HowItWorksTwo(props){
+    function checkTicketHandle(){
+      props.handlePageChangeNoToggle("Check Ticket");
     }
 
     return (
@@ -46,7 +46,8 @@ function HowItWorksTwo(){
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{ml: 3, mr:3, mt:3,fontFamily:myFont}}>
                         Lotto kicks off with an initial mint of up to 10,000 Lotto tickets. 
                         Then, every Saturday at midnight, a percentage of Lotto tickets will be eliminated from the prize pool and will no longer have a chance of taking home the jackpot.
-                        Ticket images will be updated to reflect eliminations, and the status of any ticket can always be checked on the check ticket tab. 
+                        Ticket images will be updated to reflect eliminations, and the status of any ticket can always be checked on 
+                        the <span style={{ 'cursor': 'pointer', 'text-decoration':'underline'}} onClick={checkTicketHandle}>check ticket</span> tab. 
                       </Typography>
                       
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{mt: 3,ml: 3, mr:3,mb:6 ,fontFamily:myFont}}>

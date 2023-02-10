@@ -29,7 +29,7 @@ function DescriptionFour(props) {
    async function buttonHandle(){
     await setTimeout(function() {
         props.handlePageChangeNoToggle("Mint");
-      }, 400);
+      }, 300);
     
     }
 
