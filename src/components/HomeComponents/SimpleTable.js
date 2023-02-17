@@ -68,7 +68,7 @@ export default function SimpleTable() {
   return (
     <Grid container justifyContent="center" alignItems="center" >
       <Grid item xs={12} sm ={11} md = {11} lg={11} xl={8}>
-        <TableContainer style={{  'border-radius': '12px'}}  component={Paper}>
+        <TableContainer style={{  'borderRadius': '12px'}}  component={Paper}>
           <ThemeProvider theme={theme}>
 
           

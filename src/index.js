@@ -25,6 +25,9 @@ const theme = createTheme({
         main:backBlack,
         contrastText:yellow,
       },
+      specialTry:{
+        main:yellow,
+      },
       yellow: createColor(yellow),
       backBlack: createColor(backBlack),
 

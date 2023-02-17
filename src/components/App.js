@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import Web3 from 'web3';
 import { useWeb3React } from '@web3-react/core'
 import jQuery from "jquery";
+import gsap from 'gsap';
+
 
 
 //Wallet Specific
@@ -172,9 +174,18 @@ const App = () => {
                     );
             }
             if (displayPage === "Mint"){
+                
+                let mintPercentage = 95;
+                setTimeout(() => {
+                    let progressBar = $('#mint-progress-bar'); //captured in StatusBarTwo
+                    gsap.to(progressBar, {
+                    x: `${mintPercentage}%`,
+                    duration: 5,
+                });}, 500);
+                  
                 return (
                     <div onClick={handleHideNavMenu}>
-                        <Mint handleClick = {handleMint}/>
+                        <Mint handleMint = {handleMint}/>
                     </div>
                     );
             }
