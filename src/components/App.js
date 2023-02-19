@@ -156,6 +156,8 @@ const App = () => {
     
     //Display the Body
         const [displayPage, setDisplayPage] = useState("Home")
+        const [mintCounter, setMintCounter] = useState(0);
+
         function handlePageChange(pageName){
             setDisplayPage(pageName);
             $('#navMenu').slideToggle();
@@ -164,6 +166,9 @@ const App = () => {
         function handlePageChangeNoToggle(pageName){
             setDisplayPage(pageName);
         }
+
+
+     
 
         function renderBody(){
             if (displayPage === "Home"){
@@ -175,20 +180,66 @@ const App = () => {
             }
             if (displayPage === "Mint"){
                 
-                let mintPercentage = 95;
+
+                let tokensMinted = 8275;
+                let mintPercentage = 100*tokensMinted/10000;
+
+
+                let secondsToLoadBar = 1.75;
+                let delayBeforeBar = 50;
                 setTimeout(() => {
                     let progressBar = $('#mint-progress-bar'); //captured in StatusBarTwo
                     gsap.to(progressBar, {
-                    x: `${mintPercentage}%`,
-                    duration: 5,
-                });}, 500);
+                        x: `${mintPercentage}%`,
+                        duration: secondsToLoadBar,
+                    });
+
+                    let ticker = $('#mintTicker')
+                    gsap.from(ticker, {
+                        textContent: 0,
+                        duration: secondsToLoadBar,
+                        
+                        snap: { textContent: 1 },
+                        stagger: {
+                          each: 1.0,
+                          onUpdate: function() {
+                            this.targets()[0].innerHTML = numberWithCommas(Math.ceil(this.targets()[0].textContent));
+                          },
+                        }
+                      });
+                      
+                      
+                      function numberWithCommas(x) {
+                        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                      }
+
+
+                    
+
+                }, delayBeforeBar);
+                    
+                  /*  
+                    const interval = setInterval(() => {
+                        setMintCounter((mintCounter) => mintCounter + 1);
+                      }, 1000);
                   
-                return (
-                    <div onClick={handleHideNavMenu}>
-                        <Mint handleMint = {handleMint}/>
-                    </div>
-                    );
+                      return () => {
+                        clearInterval(interval);
+                      };
+                    
+                    
+                
+                */
+                      return (
+                        <div onClick={handleHideNavMenu}>
+                            <Mint handleMint = {handleMint} tokensMinted = {tokensMinted}/> 
+                        </div>
+                        );
             }
+
+                
+            
+
             if (displayPage === "Check Ticket"){
                 return (
                     <div onClick={handleHideNavMenu}>

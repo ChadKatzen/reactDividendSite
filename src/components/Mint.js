@@ -5,7 +5,7 @@ import ticketImage from '../images/NFTTicket.gif';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../globalHelperScripts/ColorsAndFonts.js';
 import StatusBar from './MintComponents/StatusBar';
 import StatusBarTwo from './MintComponents/StatusBarTwo';
-
+import Counter from './MintComponents/Counter';
 
 let yellow =globalYellow;//"#FBD96D";
 let myFont =globalFont;//'Poppins';
@@ -31,8 +31,14 @@ function Mint(props){
                 <Grid container wrap='wrap-reverse' justifyContent="center" alignItems="center" justify="space-between">
 
                   <Grid item xs= {11} sm = {11} md = {6} lg={6}>
+                  
                     <Box sx={{mt:10, mb:10, mr:3, ml:3}}>
+                      <Box>
+                        <Counter tokensMinted = {props.tokensMinted}/>
+                      </Box>
+                      
                       <StatusBarTwo/>
+                      
                     </Box>
                   </Grid>
 
