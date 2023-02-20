@@ -153,10 +153,9 @@ const App = () => {
             await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei("0.08", "ether") })
         }
 
-    
+      
     //Display the Body
         const [displayPage, setDisplayPage] = useState("Home")
-        const [mintCounter, setMintCounter] = useState(0);
 
         function handlePageChange(pageName){
             setDisplayPage(pageName);
@@ -181,12 +180,14 @@ const App = () => {
             if (displayPage === "Mint"){
                 
 
-                let tokensMinted = 8275;
+                let tokensMinted = 3175;
                 let mintPercentage = 100*tokensMinted/10000;
+                let currentPrizePool = tokensMinted*0.08;
 
 
-                let secondsToLoadBar = 1.75;
-                let delayBeforeBar = 50;
+
+                let secondsToLoadBar = 1.75; //seconds
+                let delayBeforeBar = 50;  //miliseconds
                 setTimeout(() => {
                     let progressBar = $('#mint-progress-bar'); //captured in StatusBarTwo
                     gsap.to(progressBar, {
@@ -208,13 +209,25 @@ const App = () => {
                         }
                       });
                       
+                      let prizeTicker = $('#currentPrizePool');
+                      gsap.from(prizeTicker, {
+                        textContent: 0,
+                        duration: secondsToLoadBar,
+                        
+                        snap: { textContent: 1 },
+                        stagger: {
+                          each: 1.0,
+                          onUpdate: function() {
+                            this.targets()[0].innerHTML = numberWithCommas(Math.ceil(this.targets()[0].textContent));
+                          },
+                        }
+                      });
+
+                    
                       
                       function numberWithCommas(x) {
                         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                       }
-
-
-                    
 
                 }, delayBeforeBar);
                     
@@ -232,7 +245,7 @@ const App = () => {
                 */
                       return (
                         <div onClick={handleHideNavMenu}>
-                            <Mint handleMint = {handleMint} tokensMinted = {tokensMinted}/> 
+                            <Mint handleMint = {handleMint} tokensMinted = {tokensMinted} currentPrizePool={currentPrizePool}/> 
                         </div>
                         );
             }

@@ -5,7 +5,7 @@ import ticketImage from '../images/NFTTicket.gif';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../globalHelperScripts/ColorsAndFonts.js';
 import StatusBar from './MintComponents/StatusBar';
 import StatusBarTwo from './MintComponents/StatusBarTwo';
-import Counter from './MintComponents/Counter';
+import MintCounter from './MintComponents/MintCounter';
 
 let yellow =globalYellow;//"#FBD96D";
 let myFont =globalFont;//'Poppins';
@@ -33,12 +33,23 @@ function Mint(props){
                   <Grid item xs= {11} sm = {11} md = {6} lg={6}>
                   
                     <Box sx={{mt:10, mb:10, mr:3, ml:3}}>
-                      <Box>
-                        <Counter tokensMinted = {props.tokensMinted}/>
-                      </Box>
-                      
+                      <Grid container sx={{m:2}} justifyContent="space-between" justify="flex-start">
+
+                        <Grid item sx={{ml:6}} xs={3}>
+                          <Typography variant="h5" style={{color:yellow}} textAlign="left">Minted:</Typography>
+                          <MintCounter  tokensMinted = {props.tokensMinted}/>
+                        </Grid>
+                        <Grid item  sx={{mr:10}} xs={3}> 
+                           <Typography variant="h5" style={{color:yellow}} textAlign="right">Prize Pool:</Typography>
+                           <Typography variant="h5" style={{color:yellow}} textAlign="right" ><span id="currentPrizePool">{props.currentPrizePool}</span> Eth</Typography>
+
+                        </Grid> 
+
+
+
+                      </Grid>
+                        
                       <StatusBarTwo/>
-                      
                     </Box>
                   </Grid>
 
