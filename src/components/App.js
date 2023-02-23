@@ -180,13 +180,13 @@ const App = () => {
             if (displayPage === "Mint"){
                 
 
-                let tokensMinted = 3175;
+                let tokensMinted = 6179;
                 let mintPercentage = 100*tokensMinted/10000;
                 let currentPrizePool = tokensMinted*0.08;
 
 
 
-                let secondsToLoadBar = 1.75; //seconds
+                let secondsToLoadBar = 2; //seconds
                 let delayBeforeBar = 50;  //miliseconds
                 setTimeout(() => {
                     let progressBar = $('#mint-progress-bar'); //captured in StatusBarTwo
