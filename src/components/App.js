@@ -141,7 +141,7 @@ const App = () => {
             $('#navMenu').slideUp();
         }
 
-    //MINT Functions
+    //MINT Functions -> Used by Mint Tab
         async function handleMint(){
             if(WalletConnected === false){
                 window.alert("Connect your wallet first")
@@ -153,6 +153,26 @@ const App = () => {
             await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei("0.08", "ether") })
         }
 
+    //Construct Ticket Object -> Used by Check Ticket Tab
+        async function constructTicketObject(id){
+            
+            let myWeb3js = new Web3(activeProvider); ///Switch this to work when not connected
+            let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
+            let tokenURI = await NFTContract.methods.tokenURI(id).call();
+        
+            let imageURL;
+            let status = "Valid";
+            await $.getJSON(tokenURI, function(data) {
+                imageURL = data.image;
+                //status = data.status; //THIS WON'T Work UNITL SETUP
+            });
+            //console.log(`${id} ${imageURL} ${status}`) 
+            return ({
+                Ticket_id: id,
+                Ticket_imageURL: imageURL,
+                Ticket_status: status,
+            }); 
+        }
       
     //Display the Body
         const [displayPage, setDisplayPage] = useState("Home")
@@ -183,7 +203,6 @@ const App = () => {
                 let tokensMinted = 6179;
                 let mintPercentage = 100*tokensMinted/10000;
                 let currentPrizePool = tokensMinted*0.08;
-
 
 
                 let secondsToLoadBar = 2; //seconds
@@ -231,23 +250,11 @@ const App = () => {
 
                 }, delayBeforeBar);
                     
-                  /*  
-                    const interval = setInterval(() => {
-                        setMintCounter((mintCounter) => mintCounter + 1);
-                      }, 1000);
-                  
-                      return () => {
-                        clearInterval(interval);
-                      };
-                    
-                    
-                
-                */
-                      return (
-                        <div onClick={handleHideNavMenu}>
-                            <Mint handleMint = {handleMint} tokensMinted = {tokensMinted} currentPrizePool={currentPrizePool}/> 
-                        </div>
-                        );
+                return (
+                <div onClick={handleHideNavMenu}>
+                    <Mint handleMint = {handleMint} tokensMinted = {tokensMinted} currentPrizePool={currentPrizePool}/> 
+                </div>
+                );
             }
 
                 
@@ -256,7 +263,7 @@ const App = () => {
             if (displayPage === "Check Ticket"){
                 return (
                     <div onClick={handleHideNavMenu}>
-                        <TicketCheck/>
+                        <TicketCheck constructTicketObject={constructTicketObject}/> 
                     </div>
                     );
             }
