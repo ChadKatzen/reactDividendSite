@@ -45,7 +45,7 @@ function TicketItemBox(props){
               
               
              <Box width='100%'>
-              <Typography textAlign="right" color={globalYellow}>{props.effectiveValue.toString().substring(0,5)} Eth</Typography>  
+              <Typography textAlign="right" color={globalYellow}>{props.Ticket_Object.Ticket_status == "Valid"? props.effectiveValue.toString().substring(0,5) : 0} Eth</Typography>  
              </Box>
 
 

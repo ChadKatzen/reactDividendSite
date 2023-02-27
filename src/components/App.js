@@ -161,7 +161,12 @@ const App = () => {
             let tokenURI = await NFTContract.methods.tokenURI(id).call();
         
             let imageURL;
-            let status = "Valid";
+            let status;
+            if(Math.random() < 0.5) {
+                status = "Valid";
+            } else {
+                status = "Eliminated"
+            }
             await $.getJSON(tokenURI, function(data) {
                 imageURL = data.image;
                 //status = data.status; //THIS WON'T Work UNITL SETUP

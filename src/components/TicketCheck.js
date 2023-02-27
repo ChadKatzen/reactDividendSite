@@ -1,32 +1,47 @@
 import React, {useState, useEffect} from 'react';
 import TicketItemBox from './TicketCheckComponents/TicketItemBox';
-import { Grid, Typography } from '@mui/material';
+import { Grid, LinearProgress, Typography, CircularProgress } from '@mui/material';
 import {Box} from '@mui/material';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../globalHelperScripts/ColorsAndFonts.js';
-import {CircularProgress} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import TicketCheckSortButtons from './TicketCheckComponents/TicketCheckSortButtons';
 import TicketCheckSortButtonsTwo from './TicketCheckComponents/TicketCheckSortButtonsTwo';
 
-const useStyles = makeStyles((input) => ({
-  container: {
-    border: `1px solid ${globalYellow}`,
-    width:'170px',
-    backgroundColor: globalBackBlack,
-  },
-  active: {
-    border: `1px solid ${globalYellow}`,
-    width:'170px',
-    backgroundColor: globalYellow,
-  },
-}));
-
-
-
 
 function TicketCheck(props) {
-  const classes = useStyles();
   const [ticketList, setTicketList] = useState([]);
+  const [ticketListData, setTicketListData] = useState([])
+  const [activeSort, setActiveSort] = useState("All");
+
+  function filterData(sortMethod){
+    let tempTicketList = ticketListData.slice();
+    if (sortMethod == "All"){
+      tempTicketList.sort(function(a, b){return a.Ticket_id - b.Ticket_id})
+      setTicketList(tempTicketList);
+    } 
+    if (sortMethod == "Valid"){
+      for (let t = 0; t < tempTicketList.length; t++){
+        if(tempTicketList[t].Ticket_status != "Valid"){
+          tempTicketList.splice(t,1);
+          t = t-1;
+        }
+        setTicketList(tempTicketList);
+      }
+    }
+    if (sortMethod == "Eliminated"){
+      for (let t = 0; t < tempTicketList.length; t++){
+        if(tempTicketList[t].Ticket_status != "Eliminated"){
+          tempTicketList.splice(t,1);
+          t = t-1;
+        }
+        setTicketList(tempTicketList);
+      }
+    }
+    if (sortMethod == "My Tickets"){
+
+    }
+  }
+  
 
   let numberOfTickets = 7;
 
@@ -36,24 +51,50 @@ function TicketCheck(props) {
       props.constructTicketObject(id).then((TempTicket_Object) => {
         tempTicketList.push(TempTicket_Object);
         if (tempTicketList.length === numberOfTickets) {
-          setTicketList(tempTicketList);
+          tempTicketList.sort(function(a, b){return a.Ticket_id - b.Ticket_id})
+          let tempTicketList2 = tempTicketList.slice();
+          let tempTicketList3 = tempTicketList.slice()
+          setTicketList(tempTicketList2);
+          setTicketListData(tempTicketList3);
         }
       });
     }
+    filterData();
   }, []);
 
-  const [activeSort, setActiveSort] = useState("All");
 
+  
+
+  
   function handleSortClick(event){
+    filterData(event.target.innerHTML);
     setActiveSort(event.target.innerHTML);
-    console.log(activeSort);
+    
   }
 
+  
 
 
     
-  if (ticketList.length < numberOfTickets){ 
-    return (<CircularProgress />)
+  if ((ticketList.length < numberOfTickets) && (activeSort == "All")){ //Still loading
+    return (
+    <div>
+      <br/>
+      <br/>
+      <br/>
+      <Typography textAlign="Center" variant="h1"color={globalYellow}>Loading</Typography>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+        <LinearProgress color='specialTry' />
+        <LinearProgress color='specialTry' />
+        <LinearProgress color='specialTry' />
+        <LinearProgress color='specialTry' />
+        <LinearProgress color='specialTry' />
+    </div>
+    )
   } else {
  
  
@@ -106,10 +147,14 @@ function TicketCheck(props) {
      
 
       </Grid>
+
+
+      <br/>
+      <br/>
     </div>
 
 );
-  }
+}
 
   
 
