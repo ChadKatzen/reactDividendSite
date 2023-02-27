@@ -1,19 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import TicketItemBox from './ReusedComponents/TicketItemBox';
+import TicketItemBox from './TicketCheckComponents/TicketItemBox';
 import { Grid, Typography } from '@mui/material';
 import {Box} from '@mui/material';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../globalHelperScripts/ColorsAndFonts.js';
 import {CircularProgress} from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import TicketCheckSortButtons from './ReusedComponents/TicketCheckSortButtons';
+import TicketCheckSortButtons from './TicketCheckComponents/TicketCheckSortButtons';
+import TicketCheckSortButtonsTwo from './TicketCheckComponents/TicketCheckSortButtonsTwo';
 
-
-
+const useStyles = makeStyles((input) => ({
+  container: {
+    border: `1px solid ${globalYellow}`,
+    width:'170px',
+    backgroundColor: globalBackBlack,
+  },
+  active: {
+    border: `1px solid ${globalYellow}`,
+    width:'170px',
+    backgroundColor: globalYellow,
+  },
+}));
 
 
 
 
 function TicketCheck(props) {
+  const classes = useStyles();
   const [ticketList, setTicketList] = useState([]);
 
   let numberOfTickets = 7;
@@ -58,12 +70,13 @@ function TicketCheck(props) {
         alignItems="center" 
         wrap ="wrap" >
 
-        <TicketCheckSortButtons name="All" id="All_ID" handleSortClick={handleSortClick}/>
-        <TicketCheckSortButtons name="Valid" id="Valid_ID" handleSortClick={handleSortClick}/>
-        <TicketCheckSortButtons name="Eliminated" id="Eliminated_ID" handleSortClick={handleSortClick}/>
-        <TicketCheckSortButtons name="My Tickets" id="MyTickets_ID" handleSortClick={handleSortClick}/>
+        <TicketCheckSortButtonsTwo name="All" activeSort={activeSort} handleSortClick={handleSortClick}/>
+        <TicketCheckSortButtonsTwo name="Valid" activeSort={activeSort} handleSortClick={handleSortClick}/>
+        <TicketCheckSortButtonsTwo name="Eliminated" activeSort={activeSort} handleSortClick={handleSortClick}/>
+        <TicketCheckSortButtonsTwo name="My Tickets" activeSort={activeSort} handleSortClick={handleSortClick}/>
 
 
+      
       </Grid>
       <br/>
       <br/>
