@@ -261,9 +261,17 @@ const App = () => {
             
 
             if (displayPage === "Check Ticket"){
+
+                let tokensMinted = 6179;
+                let currentPrizePool = tokensMinted*0.08;
+                let numberOfEliminated = 2134;
+
+                let effectiveValue = currentPrizePool/(tokensMinted-numberOfEliminated);
+    
+
                 return (
                     <div onClick={handleHideNavMenu}>
-                        <TicketCheck constructTicketObject={constructTicketObject}/> 
+                        <TicketCheck constructTicketObject={constructTicketObject} effectiveValue = {effectiveValue}/> 
                     </div>
                     );
             }
