@@ -3,8 +3,6 @@ import TicketItemBox from './TicketCheckComponents/TicketItemBox';
 import { Grid, LinearProgress, Typography, CircularProgress } from '@mui/material';
 import {Box} from '@mui/material';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../globalHelperScripts/ColorsAndFonts.js';
-import { makeStyles } from '@mui/styles';
-import TicketCheckSortButtons from './TicketCheckComponents/TicketCheckSortButtons';
 import TicketCheckSortButtonsTwo from './TicketCheckComponents/TicketCheckSortButtonsTwo';
 
 
@@ -38,7 +36,14 @@ function TicketCheck(props) {
       }
     }
     if (sortMethod == "My Tickets"){
-
+      console.log(tempTicketList[1].Ticket_owner.toLowerCase())
+      for (let t = 0; t < tempTicketList.length; t++){
+        if(tempTicketList[t].Ticket_owner.toLowerCase() != props.activeAccount){ 
+          tempTicketList.splice(t,1);
+          t = t-1;
+        }
+        setTicketList(tempTicketList);
+      }
     }
   }
   

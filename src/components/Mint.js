@@ -6,6 +6,8 @@ import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../g
 import StatusBar from './MintComponents/StatusBar';
 import StatusBarTwo from './MintComponents/StatusBarTwo';
 import MintCounter from './MintComponents/MintCounter';
+import { OpenSeaLink, DiscordLink, TwitterLink } from '../globalHelperScripts/links';
+
 
 let yellow =globalYellow;//"#FBD96D";
 let myFont =globalFont;//'Poppins';
@@ -62,7 +64,7 @@ function Mint(props){
                         </Button>
                       </Grid>
                       <Grid item xs = {12}>
-                        <Button color='yellow' sx={{ml:3, mr:3}} style={{ width: 400, height: 50 }} variant={"contained"} onClick={buttonHandle}>
+                        <Button color='yellow' sx={{ml:3, mr:3}} style={{ width: 400, height: 50 }} variant={"contained"} onClick={() => window.open(OpenSeaLink, '_blank')} >
                           <Typography sx={{fontWeight: 'bold'}}>View on OpenSea</Typography>
                         </Button>
                       </Grid>

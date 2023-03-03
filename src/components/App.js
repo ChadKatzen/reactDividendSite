@@ -159,7 +159,8 @@ const App = () => {
             let myWeb3js = new Web3(activeProvider); ///Switch this to work when not connected
             let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
             let tokenURI = await NFTContract.methods.tokenURI(id).call();
-        
+            let tokenOwner = await NFTContract.methods.ownerOf(id).call();
+
             let imageURL;
             let status;
             if(Math.random() < 0.5) {
@@ -176,6 +177,7 @@ const App = () => {
                 Ticket_id: id,
                 Ticket_imageURL: imageURL,
                 Ticket_status: status,
+                Ticket_owner: tokenOwner,
             }); 
         }
       
@@ -273,10 +275,10 @@ const App = () => {
 
                 let effectiveValue = currentPrizePool/(tokensMinted-numberOfEliminated);
     
-
+               
                 return (
                     <div onClick={handleHideNavMenu}>
-                        <TicketCheck constructTicketObject={constructTicketObject} effectiveValue = {effectiveValue}/> 
+                        <TicketCheck activeAccount={String(accountDisplay)}  constructTicketObject={constructTicketObject} effectiveValue = {effectiveValue}/> 
                     </div>
                     );
             }

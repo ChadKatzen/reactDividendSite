@@ -11,6 +11,7 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import { ReactComponent as DiscordIcon } from '../images/discord.svg';
 import {ReactComponent as OpenSeaSVG} from '../images/OpenSeaTransparent2.svg';
 import { SvgIcon } from '@mui/material';
+import { OpenSeaLink, DiscordLink, TwitterLink } from '../globalHelperScripts/links';
 
 
 const ButtonAppBar = (props) => {
@@ -70,28 +71,34 @@ const ButtonAppBar = (props) => {
                     color="inherit"
                     aria-label="menu"
                     sx={{ mt: 0.3, mb: 0.3, mr:0.2, ml:0.2}}
+                    onClick={() => window.open(TwitterLink, '_blank')} 
                     >
                     <TwitterIcon />
-                    </IconButton>   
-                    <IconButton
+            </IconButton>   
+
+            <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
                     aria-label="menu"
                     sx={{ mt: 0.3, mb: 0.3, mr:0.2, ml:0.2}}
+                    onClick={() => window.open(DiscordLink, '_blank')} 
                     >
                     <SvgIcon component={DiscordIcon}  inheritViewBox>
                     </SvgIcon>   
-                    </IconButton>   
-                    <IconButton
+            </IconButton>   
+
+            <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
                     aria-label="menu"
                     sx={{ mt: 0.3, mb: 0.3,  mr:0.2, ml:0.2}} 
+                    onClick={() => window.open(OpenSeaLink, '_blank')} 
                     >
                         <OpenSeaIcon color="blue" />
-                    </IconButton> 
+            </IconButton> 
+            
             <Button sx={{ml:1}} color={connected()? "yellow": "inherit"} variant={connected()?"contained":"outlined"} onClick={handleConnectWallet}>{props.activeAccount}</Button>
           
           </Toolbar>

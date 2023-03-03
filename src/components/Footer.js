@@ -7,6 +7,7 @@ import { ReactComponent as DiscordIcon } from '../images/discord.svg';
 import {ReactComponent as OpenSeaSVG} from '../images/OpenSeaTransparent.svg';
 import { SvgIcon } from '@mui/material';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../globalHelperScripts/ColorsAndFonts.js';
+import { OpenSeaLink, DiscordLink, TwitterLink } from '../globalHelperScripts/links';
 
 function Footer(){
     function OpenSeaIcon(props){
@@ -31,6 +32,7 @@ function Footer(){
                     color="inherit"
                     aria-label="menu"
                     sx={{ mt: 0.3, mb: 0.3, mr:0.5, ml:0.5}}
+                    onClick={() => window.open(TwitterLink, '_blank')} 
                     >
                     <TwitterIcon />
                     </IconButton>   
@@ -40,6 +42,8 @@ function Footer(){
                     color="inherit"
                     aria-label="menu"
                     sx={{ mt: 0.3, mb: 0.3, mr:0.5, ml:0.5}}
+                    onClick={() => window.open(DiscordLink, '_blank')} 
+
                     >
                     <SvgIcon component={DiscordIcon}  inheritViewBox>
                     </SvgIcon>   
@@ -50,6 +54,8 @@ function Footer(){
                     color="inherit"
                     aria-label="menu"
                     sx={{ mt: 0.3, mb: 0.3,  mr:0.5, ml:0.5}} 
+                    onClick={() => window.open(OpenSeaLink, '_blank')} 
+
                     >
                         <OpenSeaIcon color="blue" />
                     </IconButton> 

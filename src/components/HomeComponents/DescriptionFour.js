@@ -9,6 +9,8 @@ import ticketImage from '../../images/loser.gif';
 
 
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
+import { OpenSeaLink, DiscordLink, TwitterLink } from '../../globalHelperScripts/links';
+
 let yellow =globalYellow;//"#FBD96D";
 let myFont = globalFont;//'Poppins';
 
@@ -67,7 +69,7 @@ function DescriptionFour(props) {
                             </Button>
                             <br/>
                             <br/>
-                            <Button color='yellow'style={{ width: 200, height: 50 }} variant={"contained"}  component="a" href={'https://opensea.io/'} target="_blank">
+                            <Button color='yellow'style={{ width: 200, height: 50 }} variant={"contained"}  component="a" href={OpenSeaLink} target="_blank">
                                 <Typography sx={{fontWeight: 'bold'}}>View on OpenSea</Typography>
                             </Button>
 
