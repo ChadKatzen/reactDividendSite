@@ -1,5 +1,5 @@
 //Big Libraries
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Web3 from 'web3';
 import { useWeb3React } from '@web3-react/core'
 import jQuery from "jquery";
@@ -74,38 +74,22 @@ const App = () => {
         const [activeProvider, setActiveProvider] = useState({});
         let { activate, deactivate, account } = useWeb3React();
 
+        async function defaultWalletConnection(){
+            let providerUrl = new Web3.providers.HttpProvider('https://goerli.infura.io/v3/464484cbf0584186b87d9e3d1abde1e0');
+            setActiveProvider(providerUrl);
+        }
+
+        useEffect(() => {
+            defaultWalletConnection();
+          }, []);
+
         async function handleConnectToMetaMask(){
             let provider;
-            //Filter through all injected providers to get Metamask
-            /*
-            let providers = await Injected.getProvider();
-            try{
-                if (providers.providers.length) {
-                    providers.providers.forEach(async (p) => {
-                        console.log(p)
-                    if (p.isMetaMask) provider = p;
-                    });
-                }
-            } catch (err) {
-                try{
-                    if (providers.length) {
-                        providers.forEach(async (p) => {
-                            console.log(p)
-                        if (p.isMetaMask) provider = p;
-                        });
-                    }
-                } catch(err){
-                    window.alert("it still didn't work")
-                }
-               
-            }
-            */
             try {
                 provider = window.ethereum.providers.find((provider) => provider.isMetaMask);
             } catch (error) {
                 provider = window.ethereum;
             }   
-            
             
             account = await provider.request({ method: 'eth_requestAccounts'});
             setWalletConnected(true);
@@ -157,6 +141,7 @@ const App = () => {
         async function constructTicketObject(id){
             
             let myWeb3js = new Web3(activeProvider); ///Switch this to work when not connected
+            console.log(activeProvider);
             let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
             let tokenURI = await NFTContract.methods.tokenURI(id).call();
             let tokenOwner = await NFTContract.methods.ownerOf(id).call();
