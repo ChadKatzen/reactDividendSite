@@ -263,7 +263,7 @@ const App = () => {
                
                 return (
                     <div onClick={handleHideNavMenu}>
-                        <TicketCheck activeAccount={String(accountDisplay)}  constructTicketObject={constructTicketObject} effectiveValue = {effectiveValue}/> 
+                        <TicketCheck tokensMinted={tokensMinted} activeAccount={String(accountDisplay)}  constructTicketObject={constructTicketObject} effectiveValue = {effectiveValue}/> 
                     </div>
                     );
             }

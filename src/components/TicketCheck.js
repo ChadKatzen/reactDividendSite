@@ -36,7 +36,13 @@ function TicketCheck(props) {
       }
     }
     if (sortMethod == "My Tickets"){
-      console.log(tempTicketList[1].Ticket_owner.toLowerCase())
+      
+      //If there is no wallet connected tell them
+      if(tempTicketList[t].Ticket_owner.toLowerCase() == ""){
+        //set some state variable that causes a pop up to render a connection modal
+        //probably use the connect wallet modal I've been using
+      }
+
       for (let t = 0; t < tempTicketList.length; t++){
         if(tempTicketList[t].Ticket_owner.toLowerCase() != props.activeAccount){ 
           tempTicketList.splice(t,1);
@@ -48,7 +54,7 @@ function TicketCheck(props) {
   }
   
 
-  let numberOfTickets = 7;
+  let numberOfTickets = 7; //props.tokensMinted
 
   useEffect(() => {
     let tempTicketList = [];
@@ -121,8 +127,6 @@ function TicketCheck(props) {
         <TicketCheckSortButtonsTwo name="Eliminated" activeSort={activeSort} handleSortClick={handleSortClick}/>
         <TicketCheckSortButtonsTwo name="My Tickets" activeSort={activeSort} handleSortClick={handleSortClick}/>
 
-
-      
       </Grid>
       <br/>
       <br/>
@@ -150,7 +154,6 @@ function TicketCheck(props) {
             <TicketItemBox Ticket_Object={Ticket_Object} effectiveValue={props.effectiveValue}/>
           ))}
      
-
       </Grid>
 
 
