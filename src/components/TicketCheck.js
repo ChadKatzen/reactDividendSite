@@ -4,14 +4,28 @@ import { Grid, LinearProgress, Typography, CircularProgress } from '@mui/materia
 import {Box} from '@mui/material';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../globalHelperScripts/ColorsAndFonts.js';
 import TicketCheckSortButtonsTwo from './TicketCheckComponents/TicketCheckSortButtonsTwo';
-
+import Modal from '@mui/material/Modal';
+import WalletModal from './WalletModal';
 
 function TicketCheck(props) {
   const [ticketList, setTicketList] = useState([]);
   const [ticketListData, setTicketListData] = useState([])
   const [activeSort, setActiveSort] = useState("All");
 
-  function filterData(sortMethod){
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+
+  function handleClose(){
+    setOpen(false); 
+  }
+
+  function handleConnectWallet(){
+    handleOpen();
+  }
+
+
+  function filterData(sortMethod){ //Returns if the filter worked
     let tempTicketList = ticketListData.slice();
     if (sortMethod == "All"){
       tempTicketList.sort(function(a, b){return a.Ticket_id - b.Ticket_id})
@@ -36,12 +50,11 @@ function TicketCheck(props) {
       }
     }
     if (sortMethod == "My Tickets"){
-      
       //If there is no wallet connected tell them
-      if(tempTicketList[t].Ticket_owner.toLowerCase() == ""){
-        //set some state variable that causes a pop up to render a connection modal
-        //probably use the connect wallet modal I've been using
-      }
+    if(props.activeAccount == ""){
+        handleConnectWallet();
+        return false; //Don't let the sort happen until a wallet is connected
+    }
 
       for (let t = 0; t < tempTicketList.length; t++){
         if(tempTicketList[t].Ticket_owner.toLowerCase() != props.activeAccount){ 
@@ -51,6 +64,8 @@ function TicketCheck(props) {
         setTicketList(tempTicketList);
       }
     }
+
+    return true;
   }
   
 
@@ -70,20 +85,15 @@ function TicketCheck(props) {
         }
       });
     }
-    filterData();
   }, []);
 
 
-  
-
-  
   function handleSortClick(event){
-    filterData(event.target.innerHTML);
-    setActiveSort(event.target.innerHTML);
-    
+    let filterWorked = filterData(event.target.innerHTML);
+    if (filterWorked){
+      setActiveSort(event.target.innerHTML);
+    }
   }
-
-  
 
 
     
@@ -159,6 +169,22 @@ function TicketCheck(props) {
 
       <br/>
       <br/>
+
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <WalletModal 
+          connectToMetaMask={props.connectToMetaMask}
+          connectToCoinBase={props.connectToCoinBase}
+          connectToWalletConnector={props.connectToWalletConnector}
+          handleClose={handleClose}
+        />
+      </Modal>
+
     </div>
 
 );

@@ -263,7 +263,15 @@ const App = () => {
                
                 return (
                     <div onClick={handleHideNavMenu}>
-                        <TicketCheck tokensMinted={tokensMinted} activeAccount={String(accountDisplay)}  constructTicketObject={constructTicketObject} effectiveValue = {effectiveValue}/> 
+                        <TicketCheck 
+                            tokensMinted={tokensMinted} 
+                            activeAccount={String(accountDisplay)}  
+                            constructTicketObject={constructTicketObject} 
+                            effectiveValue = {effectiveValue}
+                            connectToMetaMask = {handleConnectToMetaMask} 
+                            connectToCoinBase ={handleConnectToCoinBase}
+                            connectToWalletConnector = {handleConnectToWalletConnector}
+                            /> 
                     </div>
                     );
             }
