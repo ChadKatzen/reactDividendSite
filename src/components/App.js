@@ -63,28 +63,44 @@ const useStyles = makeStyles({
     },
   });
   
-
+const myContractAddress = "0xD0a215C39f4eCFAC37319E750B98677295bE2009";
+const myDefaultWebProvider = 'https://goerli.infura.io/v3/464484cbf0584186b87d9e3d1abde1e0';
 
 const App = () => {
     const classes = useStyles();
     //Contract State & Wallet Globals 
-        const [NFTAddress, setNFTAddress] = useState("0x7DAfAC25D7FF95f878B9bb08E9bA3fAEd5f72418");
+        const [NFTAddress, setNFTAddress] = useState(myContractAddress);
         const [WalletConnected, setWalletConnected] = useState(false);
         const [accountDisplay, setAccountDisplay] = useState("");
         const [activeProvider, setActiveProvider] = useState({});
         let { activate, deactivate, account } = useWeb3React();
+        const [tokensMinted, setTokensMinted] = useState(0);
 
         async function defaultWalletConnection(){
-            let providerUrl = new Web3.providers.HttpProvider('https://goerli.infura.io/v3/464484cbf0584186b87d9e3d1abde1e0');
+            let providerUrl = new Web3.providers.HttpProvider(myDefaultWebProvider);           
             setActiveProvider(providerUrl);
         }
 
         useEffect(() => {
             defaultWalletConnection();
+            
+            const web3 = new Web3(myDefaultWebProvider);
+            const contractAddress = myContractAddress;
+            const contractABI = ABI;
+        
+            const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
+        
+            async function fetchData() {
+              const tokensMinted = await contractInstance.methods.amountMinted().call();
+              setTokensMinted(tokensMinted);
+            }
+        
+            fetchData();
+
           }, []);
 
         async function handleConnectToMetaMask(){
-            let provider;
+            let provider; 
             try {
                 provider = window.ethereum.providers.find((provider) => provider.isMetaMask);
             } catch (error) {
@@ -134,30 +150,24 @@ const App = () => {
             let myWeb3js = new Web3(activeProvider);
             let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
             let accounts = await activeProvider.request({ method: 'eth_requestAccounts'});
-            await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei("0.08", "ether") })
+            await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei("0.105", "ether") })
         }
 
     //Construct Ticket Object -> Used by Check Ticket Tab
         async function constructTicketObject(id){
             
-            let myWeb3js = new Web3(activeProvider); ///Switch this to work when not connected
-            console.log(activeProvider);
+            let myWeb3js = new Web3(activeProvider); 
             let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
             let tokenURI = await NFTContract.methods.tokenURI(id).call();
             let tokenOwner = await NFTContract.methods.ownerOf(id).call();
 
             let imageURL;
             let status;
-            if(Math.random() < 0.5) {
-                status = "Valid";
-            } else {
-                status = "Eliminated"
-            }
             await $.getJSON(tokenURI, function(data) {
                 imageURL = data.image;
-                //status = data.status; //THIS WON'T Work UNITL SETUP
+                status = data.name.split(' ')[0]; //Assumes name is "Eliminated Ticket" or "Valid Ticket"
             });
-            //console.log(`${id} ${imageURL} ${status}`) 
+         
             return ({
                 Ticket_id: id,
                 Ticket_imageURL: imageURL,
@@ -169,6 +179,7 @@ const App = () => {
     //Display the Body
         const [displayPage, setDisplayPage] = useState("Home")
 
+    
         function handlePageChange(pageName){
             setDisplayPage(pageName);
             $('#navMenu').slideToggle();
@@ -179,9 +190,10 @@ const App = () => {
         }
 
 
-     
 
-        function renderBody(){
+        function renderBody(){ 
+
+            
             if (displayPage === "Home"){
                 return (
                     <div onClick={handleHideNavMenu}>
@@ -191,10 +203,8 @@ const App = () => {
             }
             if (displayPage === "Mint"){
                 
-
-                let tokensMinted = 6179;
                 let mintPercentage = 100*tokensMinted/10000;
-                let currentPrizePool = tokensMinted*0.08;
+                let currentPrizePool = tokensMinted*0.1;
 
 
                 let secondsToLoadBar = 2; //seconds
@@ -241,25 +251,16 @@ const App = () => {
                       }
 
                 }, delayBeforeBar);
-                    
+                
                 return (
                 <div onClick={handleHideNavMenu}>
                     <Mint handleMint = {handleMint} tokensMinted = {tokensMinted} currentPrizePool={currentPrizePool}/> 
                 </div>
                 );
             }
-
-                
-            
-
             if (displayPage === "Check Ticket"){
 
-                let tokensMinted = 6179;
-                let currentPrizePool = tokensMinted*0.08;
-                let numberOfEliminated = 2134;
-
-                let effectiveValue = currentPrizePool/(tokensMinted-numberOfEliminated);
-    
+               
                
                 return (
                     <div onClick={handleHideNavMenu}>
@@ -267,7 +268,7 @@ const App = () => {
                             tokensMinted={tokensMinted} 
                             activeAccount={String(accountDisplay)}  
                             constructTicketObject={constructTicketObject} 
-                            effectiveValue = {effectiveValue}
+                            mintPrice = {0.105}
                             connectToMetaMask = {handleConnectToMetaMask} 
                             connectToCoinBase ={handleConnectToCoinBase}
                             connectToWalletConnector = {handleConnectToWalletConnector}
@@ -278,11 +279,6 @@ const App = () => {
             return <div></div>;
         }
 
-
-
-
-
-    
     return ( 
         <div >
             <Grid container justifyContent='space-between' style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}} > 

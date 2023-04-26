@@ -45,14 +45,17 @@ function HowItWorksTwo(props){
                       <Typography variant="h2" style={{color:yellow}} textAlign ="left" sx={{ml:3, mt:3, fontFamily:myFont,fontWeight: 'bold'}} >How It Works</Typography>
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{ml: 3, mr:3, mt:3,fontFamily:myFont}}>
                         Lotto kicks off with an initial mint of up to 10,000 Lotto tickets. 
-                        Then, every Saturday at midnight, a percentage of Lotto tickets will be eliminated from the prize pool and will no longer have a chance of taking home the jackpot.
+                        Every Saturday at midnight, a percentage of Lotto tickets will be eliminated from the prize pool and will no longer have a chance of taking home the jackpot.
                         Ticket images will be updated to reflect eliminations, and the status of any ticket can always be checked on 
                         the <span style={{ 'cursor': 'pointer', 'text-decoration':'underline'}} onClick={checkTicketHandle}>check ticket</span> tab. 
                       </Typography>
-                      
+                      <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{ml: 3, mr:3, mt:3,fontFamily:myFont}}>
+                        As tickets are eliminated, the value of remaining tickets go up! They now have a better chance of taking home the prize pool. See below for a full schedule of eliminations and estimated Lotto ticket values.
+                      </Typography>
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{mt: 3,ml: 3, mr:3,mb:6 ,fontFamily:myFont}}>
-                        If your ticket is eliminated, it can be burned to guarantee whitelist access to the next Lotto drop. 
-                        See below for a full schedule of eliminations.
+                        
+                        If your ticket is eliminated, don't worry. It can still be burned to guarantee whitelist access to the next Lotto drop. 
+                        
                       </Typography>
 
                       

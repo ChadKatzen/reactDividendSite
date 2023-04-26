@@ -11,6 +11,7 @@ function TicketCheck(props) {
   const [ticketList, setTicketList] = useState([]);
   const [ticketListData, setTicketListData] = useState([])
   const [activeSort, setActiveSort] = useState("All");
+  const [numValidTickets, setNumValidTickets] = useState(0);
 
 
   const [open, setOpen] = React.useState(false);
@@ -69,22 +70,30 @@ function TicketCheck(props) {
   }
   
 
-  let numberOfTickets = 7; //props.tokensMinted
+ 
 
+  let numberOfTickets = props.tokensMinted;
   useEffect(() => {
     let tempTicketList = [];
+    let counterVaidTickets = 0;
+
     for (let id = 1; id <= numberOfTickets; id++) {
       props.constructTicketObject(id).then((TempTicket_Object) => {
         tempTicketList.push(TempTicket_Object);
-        if (tempTicketList.length === numberOfTickets) {
+        if(TempTicket_Object.Ticket_status === "Valid"){
+          counterVaidTickets++;
+        }
+        if (tempTicketList.length == numberOfTickets) {
           tempTicketList.sort(function(a, b){return a.Ticket_id - b.Ticket_id})
           let tempTicketList2 = tempTicketList.slice();
           let tempTicketList3 = tempTicketList.slice()
           setTicketList(tempTicketList2);
           setTicketListData(tempTicketList3);
+          setNumValidTickets(counterVaidTickets);
         }
       });
     }
+  
   }, []);
 
 
@@ -95,9 +104,10 @@ function TicketCheck(props) {
     }
   }
 
-
     
   if ((ticketList.length < numberOfTickets) && (activeSort == "All")){ //Still loading
+    console.log(ticketList.length)
+    console.log(numberOfTickets)
     return (
     <div>
       <br/>
@@ -116,6 +126,7 @@ function TicketCheck(props) {
         <LinearProgress color='specialTry' />
     </div>
     )
+ 
   } else {
  
  
@@ -161,7 +172,7 @@ function TicketCheck(props) {
         </Grid>
 
           {ticketList.map((Ticket_Object) => (
-            <TicketItemBox Ticket_Object={Ticket_Object} effectiveValue={props.effectiveValue}/>
+            <TicketItemBox Ticket_Object={Ticket_Object} effectiveValue={(numValidTickets/numberOfTickets)*props.mintPrice}/>
           ))}
      
       </Grid>

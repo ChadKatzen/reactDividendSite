@@ -82,7 +82,7 @@ export default function SimpleTable() {
                     <Typography variant="h5" sx={{fontWeight:'bold'}}>Tickets Left</Typography>
                   </TableCell>
                   <TableCell sx={{p:0}} className={classes.headerCell} align="center" style={{ width: '33%',height:'50px',borderBottom: '2px solid black' }}>
-                    <Typography variant="h5" sx={{fontWeight:'bold'}}>Ticket Value</Typography>
+                    <Typography variant="h5" sx={{fontWeight:'bold'}}>Estimated Ticket Value</Typography>
                   </TableCell>
                 </TableRow>
               </TableHead>

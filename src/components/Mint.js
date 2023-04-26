@@ -16,6 +16,7 @@ let myFont =globalFont;//'Poppins';
 
 
 function Mint(props){
+  console.log(props.tokensMinted)
     function buttonHandle(){
       return;
     }

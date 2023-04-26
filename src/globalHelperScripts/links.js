@@ -1,5 +1,5 @@
-let OpenSeaLink = "https://testnets.opensea.io/collection/nfttutorial-il7a7s6e47";
+let OpenSeaLink = "https://testnets.opensea.io/collection/lottocontract";
 let DiscordLink = "https://discord.gg/FyFaSBZq5q";
-let TwitterLink = "https://twitter.com/franklinisbored";
+let TwitterLink = "https://www.facebook.com/michelle.yospa";
 
 export {OpenSeaLink, DiscordLink, TwitterLink};

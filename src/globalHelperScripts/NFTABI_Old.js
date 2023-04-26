@@ -1,5 +1,4 @@
-
-  let ABI = [
+let ABI = [
     {
       "inputs": [],
       "stateMutability": "nonpayable",
@@ -111,43 +110,8 @@
       "type": "event"
     },
     {
-      "inputs": [],
-      "name": "CREATOR_FEE",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "CREATOR_TREASURY",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "MINTING_LIVE",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+      "stateMutability": "payable",
+      "type": "fallback"
     },
     {
       "inputs": [],
@@ -164,7 +128,7 @@
     },
     {
       "inputs": [],
-      "name": "TOTAL_SUPPLY",
+      "name": "MINT_TREASURY",
       "outputs": [
         {
           "internalType": "uint256",
@@ -176,14 +140,21 @@
       "type": "function"
     },
     {
-      "inputs": [
+      "inputs": [],
+      "name": "ROYALTY_TREASURY",
+      "outputs": [
         {
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
       ],
-      "name": "TicketValidationByID",
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "RoyaltyWithdrawalable",
       "outputs": [
         {
           "internalType": "bool",
@@ -196,20 +167,7 @@
     },
     {
       "inputs": [],
-      "name": "WINNER_TREASURY",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "amountMinted",
+      "name": "TOTAL_SUPPLY",
       "outputs": [
         {
           "internalType": "uint256",
@@ -271,39 +229,6 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "baseTokenURIinvalid",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "currentTokenId",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "_value",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "eliminateTickets",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -317,19 +242,6 @@
           "internalType": "address",
           "name": "",
           "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getRandomNumber",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -425,9 +337,41 @@
     },
     {
       "inputs": [],
+      "name": "readRoyaltyWithdrawal",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "renounceOwnership",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "royaltyClaimable",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -515,19 +459,6 @@
     {
       "inputs": [
         {
-          "internalType": "string",
-          "name": "_baseTokenURIinvalid",
-          "type": "string"
-        }
-      ],
-      "name": "setBaseTokenURIInvalid",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
           "internalType": "bytes4",
           "name": "interfaceId",
           "type": "bytes4"
@@ -542,6 +473,13 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "switchRoyaltyWithdrawal",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -614,14 +552,7 @@
     },
     {
       "inputs": [],
-      "name": "turnOffMint",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "withdrawCreatorPercentage",
+      "name": "withdrawMintSupply",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -630,14 +561,24 @@
       "inputs": [
         {
           "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
           "name": "id",
           "type": "uint256"
         }
       ],
-      "name": "withdrawWinner",
+      "name": "withdrawRoyalty",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
     }
   ]
+
   export default ABI;

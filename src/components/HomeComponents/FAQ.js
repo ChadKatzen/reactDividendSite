@@ -33,7 +33,7 @@ function FAQ(){
             <DropDownBox 
                 id="CostToMint"
                 question="#1 What is the cost to mint?"
-                answer="0.1 Eth"
+                answer="0.105 Eth"
             />
 
             <DropDownBox 
@@ -44,20 +44,26 @@ function FAQ(){
 
             <DropDownBox 
               id="Jackpot"
-              question="#3 What is the jackpot?"
-              answer="The prize will be 100% of the mint. If the full 10,000 Lotto NFTs are minted, the jackpot will be 1,000 Eth."
+              question="#3 What is the prize pool?"
+              answer="The prize pool will be ~ 95% of the mint (0.1 Eth to the prize pool 0.05 Eth to the creator). If the full 10,000 Lotto NFTs are minted, the jackpot will be 1,000 Eth."
+            />
+
+            <DropDownBox 
+              id="LessThanFullMint"
+              question="#4 What happens if not all Lotto tickets are minted?"
+              answer="The prize pool will still be 95% of the mint. If the 6,000 Lotto NFTs are minted, the jackpot will be 600 Eth. Schedule wise, Lotto starts by eliminating tickets to the next applicable level. In the example of 6,000 tickets, 1,000 tickets would be eliminated the first week to get to the next applicable level (5,000 tickets). Eliminations would then continue on according to the schedule above."
             />
 
             <DropDownBox 
               id="Eliminations"
-              question="#4 Are eliminations random?"
+              question="#5 Are eliminations random?"
               answer="All eliminations are entirely random and pulled from the Lotto smart contract itself (we use a random number generating oracle). Because everything is on-chain, this might be the most transparent online lottery to date. For the remaining skeptics, you can find the smart contract code here on Etherscan."
             />
 
 
             <DropDownBox 
               id="Winner"
-              question="#5 How is the winner paid?"
+              question="#6 How is the winner paid?"
               answer="The wallet holding the winning ticket will be able to withdraw directly from the Lotto smart contract. If you’ve won, you can withdraw using the check ticket tab."
             />
             
