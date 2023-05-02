@@ -52,11 +52,7 @@ function HowItWorksTwo(props){
                       <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{ml: 3, mr:3, mt:3,fontFamily:myFont}}>
                         As tickets are eliminated, the value of remaining tickets go up! They now have a better chance of taking home the prize pool. See below for a full schedule of eliminations and estimated Lotto ticket values.
                       </Typography>
-                      <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{mt: 3,ml: 3, mr:3,mb:6 ,fontFamily:myFont}}>
-                        
-                        If your ticket is eliminated, don't worry. It can still be burned to guarantee whitelist access to the next Lotto drop. 
-                        
-                      </Typography>
+
 
                       
 
@@ -74,5 +70,11 @@ function HowItWorksTwo(props){
       </Grid>
     );
 }
-
+/*
+                      <Typography variant="h6" style={{color:yellow}} textAlign ="justify" sx={{mt: 3,ml: 3, mr:3,mb:6 ,fontFamily:myFont}}>
+                        
+                        If your ticket is eliminated, don't worry. It can still be burned to guarantee whitelist access to the next Lotto drop. 
+                        
+                      </Typography>
+*/
 export default HowItWorksTwo;

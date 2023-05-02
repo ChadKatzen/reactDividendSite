@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import {Grid} from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -19,6 +19,8 @@ const useStyles = makeStyles((input) => ({
 
 function TicketItemBox(props){
     const classes = useStyles();
+
+
     return (
         <Grid item xs = {11} md={8} lg={8}>
             <Box className={classes.container}  bgcolor={globalBackBlack} sx={{ display:'flex', justifyContent: "space-center", alignItems: 'center'}} >
@@ -42,9 +44,13 @@ function TicketItemBox(props){
                 <Typography color={props.Ticket_Object.Ticket_status == "Valid" ? '#92d192' : 'red'} >{props.Ticket_Object.Ticket_status}</Typography>
 
               </Box>
+              <Box sx={{ml:6}}>
+                {(props.numValidTickets == 1)? <Button style={{ width: 140}} color='yellow' variant={"contained"} onClick={() => props.claimPrize(props.Ticket_Object.Ticket_id)}><Typography sx={{fontWeight: 'bold'}}>Collect Prize!</Typography></Button> : ""} 
+              </Box>
               
-              
-             <Box width='100%'>
+             <Box width='100%'>  
+
+
               <Typography textAlign="right" color={globalYellow}>{props.Ticket_Object.Ticket_status == "Valid"? props.effectiveValue.toString().substring(0,5) : 0} Eth</Typography>  
              </Box>
 

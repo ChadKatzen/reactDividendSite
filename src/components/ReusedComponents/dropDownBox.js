@@ -64,7 +64,7 @@ function DropDownBox(props){
                 </Box>
 
                 <Box bgcolor={lightYellow} sx={{ ml:1.5, mr:1.5, fontFamily:myFont}} style={{display:"none"}} id={`${props.id}DescriptionBox`}>
-                    <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} >{props.answer}</Typography>
+                    <Typography variant="h6" sx={{ ml:3, pt:1, pb: 1}} style={{color:backBlack}} dangerouslySetInnerHTML={{ __html: props.answer }}/>
                 </Box>
     </Grid>
    );

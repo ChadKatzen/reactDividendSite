@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Box} from '@mui/system';
 import {Grid, Typography} from '@mui/material';
 import DropDownBox from '../ReusedComponents/DropDownBox';
-
+import { EtherscanLink } from '../../globalHelperScripts/links';
 import {globalYellow, globalLightYellow, globalBackBlack, globalFont} from '../../globalHelperScripts/ColorsAndFonts.js';
 
 
@@ -57,10 +57,10 @@ function FAQ(){
             <DropDownBox 
               id="Eliminations"
               question="#5 Are eliminations random?"
-              answer="All eliminations are entirely random and pulled from the Lotto smart contract itself (we use a random number generating oracle). Because everything is on-chain, this might be the most transparent online lottery to date. For the remaining skeptics, you can find the smart contract code here on Etherscan."
+              answer={`All eliminations are entirely random and pulled from the Lotto smart contract itself (we use a random number generating oracle). Because everything is on-chain, this might be the most transparent online lottery to date. For the remaining skeptics, you can find the smart contract code <a target="_blank" href=${EtherscanLink}" style="color: inherit; text-decoration: underline;">here</a> on Etherscan.`}
             />
 
-
+ 
             <DropDownBox 
               id="Winner"
               question="#6 How is the winner paid?"

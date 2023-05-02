@@ -63,7 +63,7 @@ const useStyles = makeStyles({
     },
   });
   
-const myContractAddress = "0xD0a215C39f4eCFAC37319E750B98677295bE2009";
+const myContractAddress = "0x92e7f0Dd300d7df0CfA7878275A335C1b2FC6De8";
 const myDefaultWebProvider = 'https://goerli.infura.io/v3/464484cbf0584186b87d9e3d1abde1e0';
 
 const App = () => {
@@ -77,8 +77,11 @@ const App = () => {
         const [tokensMinted, setTokensMinted] = useState(0);
 
         async function defaultWalletConnection(){
-            let providerUrl = new Web3.providers.HttpProvider(myDefaultWebProvider);           
-            setActiveProvider(providerUrl);
+            let providerUrl = new Web3.providers.HttpProvider(myDefaultWebProvider);
+            if(Object.keys(activeProvider).length == 0){
+                setActiveProvider(providerUrl);
+            }           
+            
         }
 
         useEffect(() => {
@@ -175,6 +178,17 @@ const App = () => {
                 Ticket_owner: tokenOwner,
             }); 
         }
+
+        async function claimPrize(id){
+            
+            console.log(id === 1)
+            let myWeb3js = new Web3(activeProvider); 
+            console.log(activeProvider)
+            let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
+            let accounts = await activeProvider.request({ method: 'eth_requestAccounts'});
+
+            await NFTContract.methods.withdrawWinner(id).send({ from: accounts[0]});
+        }
       
     //Display the Body
         const [displayPage, setDisplayPage] = useState("Home")
@@ -268,10 +282,12 @@ const App = () => {
                             tokensMinted={tokensMinted} 
                             activeAccount={String(accountDisplay)}  
                             constructTicketObject={constructTicketObject} 
-                            mintPrice = {0.105}
+                            mintPrice = {0.1} //This is really subtracting creator fee
+                            claimPrize={claimPrize}
                             connectToMetaMask = {handleConnectToMetaMask} 
                             connectToCoinBase ={handleConnectToCoinBase}
                             connectToWalletConnector = {handleConnectToWalletConnector}
+
                             /> 
                     </div>
                     );

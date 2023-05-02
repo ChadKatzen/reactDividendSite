@@ -172,10 +172,12 @@ function TicketCheck(props) {
         </Grid>
 
           {ticketList.map((Ticket_Object) => (
-            <TicketItemBox Ticket_Object={Ticket_Object} effectiveValue={(numValidTickets/numberOfTickets)*props.mintPrice}/>
+            <TicketItemBox Ticket_Object={Ticket_Object} effectiveValue={(numValidTickets/numberOfTickets)*(props.mintPrice) } numValidTickets={numValidTickets} claimPrize={props.claimPrize}/>
           ))}
      
-      </Grid>
+      </Grid>  
+
+
 
 
       <br/>
