@@ -50,7 +50,7 @@ function DescriptionFour(props) {
                             <Typography variant="h2" style={{color:yellow}} textAlign ="left" sx={{ml:3, mt:0, fontFamily:myFont, fontWeight: 'bold'}} >Lotto</Typography>
                             
                             <Typography variant="h5" style={{color:yellow}} textAlign ="justify" sx={{mr: 3, ml:3, mt:3, mb:5,fontFamily:myFont}}>
-                                Your chance at up to 1,000 eth.
+                                Your chance at up to 10 eth.
 
                                 Week by week, Lotto tickets will be eliminated until one lucky winner remains.
 

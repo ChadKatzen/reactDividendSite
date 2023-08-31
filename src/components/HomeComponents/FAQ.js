@@ -33,7 +33,7 @@ function FAQ(){
             <DropDownBox 
                 id="CostToMint"
                 question="#1 What is the cost to mint?"
-                answer="0.105 Eth"
+                answer="0.00105 Eth"
             />
 
             <DropDownBox 
@@ -45,19 +45,19 @@ function FAQ(){
             <DropDownBox 
               id="Jackpot"
               question="#3 What is the prize pool?"
-              answer="The prize pool will be ~ 95% of the mint (0.1 Eth to the prize pool 0.05 Eth to the creator). If the full 10,000 Lotto NFTs are minted, the jackpot will be 1,000 Eth."
+              answer="The prize pool will be ~ 95% of the mint (0.001 Eth to the prize pool 0.0005 Eth to the creator). If the full 10,000 Lotto NFTs are minted, the jackpot will be 10 Eth."
             />
 
             <DropDownBox 
               id="LessThanFullMint"
               question="#4 What happens if not all Lotto tickets are minted?"
-              answer="The prize pool will still be ~ 95% of the mint. For example, if 6,000 Lotto NFTs are minted, the jackpot will be 0.1 Eth per ticket or 600 Eth total. Schedule wise, Lotto starts by eliminating tickets to the next applicable level. In the example of 6,000 tickets, 1,000 tickets would be eliminated the first week to get to the next applicable level (5,000 tickets). Eliminations would then continue on according to the schedule above."
+              answer="The prize pool will still be ~ 95% of the mint. For example, if 6,000 Lotto NFTs are minted, the jackpot will be 0.001 Eth per ticket or 6 Eth total. Schedule wise, Lotto starts by eliminating tickets to the next applicable level. In the example of 6,000 tickets, 1,000 tickets would be eliminated the first week to get to the next applicable level (5,000 tickets). Eliminations would then continue on according to the schedule above."
             />
 
             <DropDownBox 
               id="Eliminations"
               question="#5 Are eliminations random?"
-              answer={`All eliminations are entirely random and are done within the Lotto smart contract itself (we use a random number generating oracle). Because everything is on-chain, this might be the most transparent online lottery to date. For the remaining skeptics, you can find the smart contract code <a target="_blank" href=${EtherscanLink}" style="color: inherit; text-decoration: underline;">here</a> on Etherscan.`}
+              answer={`All eliminations are entirely random and are done within the Lotto smart contract itself. Because everything is on-chain, this might be the most transparent online lottery to date. For the remaining skeptics, you can find the smart contract code <a target="_blank" href=${EtherscanLink}" style="color: inherit; text-decoration: underline;">here</a> on Etherscan.`}
             />
 
  

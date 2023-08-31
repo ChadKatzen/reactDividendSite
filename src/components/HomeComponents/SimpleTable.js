@@ -50,19 +50,19 @@ export default function SimpleTable() {
   const classes = useStyles();
 
   const data = [
-    { week: 0, amountLeft: '10,000', expectedValue: 0.1 },
-    { week: 1, amountLeft: '7,500', expectedValue: 0.13 },
-    { week: 2, amountLeft: '5,000', expectedValue: 0.20 },
-    { week: 3, amountLeft: '2,500', expectedValue: 0.4 },
-    { week: 4, amountLeft: '1,000', expectedValue: 1 },
-    { week: 5, amountLeft: 500, expectedValue: 2 },
-    { week: 6, amountLeft: 250, expectedValue: 4 },
-    { week: 7, amountLeft: 100, expectedValue: 10 },
-    { week: 8, amountLeft: 50, expectedValue: 20 },
-    { week: 9, amountLeft: 25, expectedValue: 40 },
-    { week: 10, amountLeft: 10, expectedValue: 100 },
-    { week: 11, amountLeft: 5, expectedValue: 200 },
-    { week: 12, amountLeft: 2, expectedValue: 500 },
+    { week: 0, amountLeft: '10,000', expectedValue: 0.001 },
+    { week: 1, amountLeft: '7,500', expectedValue: 0.0013 },
+    { week: 2, amountLeft: '5,000', expectedValue: 0.002 },
+    { week: 3, amountLeft: '2,500', expectedValue: 0.004 },
+    { week: 4, amountLeft: '1,000', expectedValue: 0.01 },
+    { week: 5, amountLeft: 500, expectedValue: 0.02 },
+    { week: 6, amountLeft: 250, expectedValue: 0.04 },
+    { week: 7, amountLeft: 100, expectedValue: 0.1 },
+    { week: 8, amountLeft: 50, expectedValue: 0.2 },
+    { week: 9, amountLeft: 25, expectedValue: 0.4 },
+    { week: 10, amountLeft: 10, expectedValue: 1 },
+    { week: 11, amountLeft: 5, expectedValue: 2 },
+    { week: 12, amountLeft: 2, expectedValue: 5 },
   ];
 
   return (
