@@ -1,6 +1,6 @@
-let OpenSeaLink = "https://testnets.opensea.io/collection/lottocontract";
-let DiscordLink = "https://discord.gg/FyFaSBZq5q";
-let TwitterLink = "https://www.facebook.com/michelle.yospa";
-let EtherscanLink = "https://goerli.etherscan.io/address/0xD0a215C39f4eCFAC37319E750B98677295bE2009#code";
+let OpenSeaLink = "https://testnets.opensea.io/";
+let DiscordLink = "https://discord.gg/";
+let TwitterLink = "https://www.twitter.com";
+let EtherscanLink = "https://goerli.etherscan.io/address/0x92e7f0Dd300d7df0CfA7878275A335C1b2FC6De8#readContract";
 
 export {OpenSeaLink, DiscordLink, TwitterLink, EtherscanLink};

@@ -6,7 +6,6 @@ import jQuery from "jquery";
 import gsap from 'gsap';
 
 
-
 //Wallet Specific
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
@@ -14,6 +13,7 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 
 //Contract Specific
 import ABI from '../globalHelperScripts/NFTABI.js';
+import { NFTContractAddress, myDefaultWebProviderAddress,mint_price,creator_fee } from '../globalHelperScripts/contractInfo.js';
 
 //Components
 import ButtonAppBar from './AppBar';
@@ -63,8 +63,8 @@ const useStyles = makeStyles({
     },
   });
   
-const myContractAddress = "0x92e7f0Dd300d7df0CfA7878275A335C1b2FC6De8";
-const myDefaultWebProvider = 'https://goerli.infura.io/v3/464484cbf0584186b87d9e3d1abde1e0';
+const myContractAddress = NFTContractAddress;
+const myDefaultWebProvider = myDefaultWebProviderAddress;
 
 const App = () => {
     const classes = useStyles();
@@ -153,10 +153,12 @@ const App = () => {
             let myWeb3js = new Web3(activeProvider);
             let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
             let accounts = await activeProvider.request({ method: 'eth_requestAccounts'});
-            await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei("0.105", "ether") })
+           
+            await NFTContract.methods.mintTo(accounts[0]).send({ from: accounts[0], value: myWeb3js.utils.toWei(mint_price.toString(), "ether") }); //myWeb3js.utils.toWei("0.105", "ether")
         }
 
-    //Construct Ticket Object -> Used by Check Ticket Tab
+    //Construct Ticket Object -> Used by Check Ticket Tab 
+
         async function constructTicketObject(id){
             
             let myWeb3js = new Web3(activeProvider); 
@@ -181,7 +183,7 @@ const App = () => {
 
         async function claimPrize(id){
             
-            console.log(id === 1)
+            
             let myWeb3js = new Web3(activeProvider); 
             console.log(activeProvider)
             let NFTContract =new myWeb3js.eth.Contract(ABI, NFTAddress);
@@ -218,7 +220,7 @@ const App = () => {
             if (displayPage === "Mint"){
                 
                 let mintPercentage = 100*tokensMinted/10000;
-                let currentPrizePool = tokensMinted*0.1;
+                let currentPrizePool = tokensMinted*(mint_price - creator_fee);
 
 
                 let secondsToLoadBar = 2; //seconds
@@ -282,12 +284,11 @@ const App = () => {
                             tokensMinted={tokensMinted} 
                             activeAccount={String(accountDisplay)}  
                             constructTicketObject={constructTicketObject} 
-                            mintPrice = {0.1} //This is really subtracting creator fee
+                            mintPrice = {mint_price-creator_fee} //This is really subtracting creator fee
                             claimPrize={claimPrize}
                             connectToMetaMask = {handleConnectToMetaMask} 
                             connectToCoinBase ={handleConnectToCoinBase}
                             connectToWalletConnector = {handleConnectToWalletConnector}
-
                             /> 
                     </div>
                     );
